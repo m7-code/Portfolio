@@ -1,16 +1,105 @@
-# React + Vite
+# 🚀 Muhammad Mughira Asad — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive developer portfolio built with **React**, **Three.js**, and **Tailwind CSS**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## React Compiler
+- 🖥️ **3D Computer Model** on the hero page using Three.js (GLB model with OrbitControls)
+- 💼 **Experience Timeline** with card hover effects
+- 🛠️ **Skills Page** with real tech icons from [skillicons.dev](https://skillicons.dev)
+- 📬 **Contact Page** with direct WhatsApp, Email, GitHub, LinkedIn & Instagram links
+- 📱 **Fully Responsive** — works on mobile, tablet, and desktop
+- 🌙 **Dark Theme** with cyan glow accents
+- ⚡ **Fast** — built with Vite
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🧱 Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| Tech | Use |
+|------|-----|
+| React 18 | UI Framework |
+| Vite | Build Tool |
+| Three.js | 3D Model Rendering |
+| Tailwind CSS | Styling |
+| skillicons.dev | Skill Icons |
+
+---
+
+## 📁 Project Structure
+
+```
+src/
+├── App.jsx                      # Main layout + Navbar
+├── index.css                    # Global styles + Tailwind
+└── components/
+    ├── page1/
+    │   └── Page1.jsx            # Hero section with 3D model
+    ├── page2/
+    │   └── Page2.jsx            # Experience timeline
+    ├── page3/
+    │   └── Page3.jsx            # Skills with icons
+    └── page4/
+        └── Page4.jsx            # Contact links
+
+public/
+└── computer.glb                 # 3D model file
+```
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/m7-code/portfolio.git
+cd portfolio
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Add your 3D model
+
+Place your `computer.glb` file inside the `public/` folder.
+
+### 4. Run locally
+
+```bash
+npm run dev
+```
+
+### 5. Build for production
+
+```bash
+npm run build
+```
+
+---
+
+
+## 📬 Contact
+
+| Platform | Link |
+|----------|------|
+| 💼 LinkedIn | [muhammad-mughira-asad](https://www.linkedin.com/in/muhammad-mughira-asad-85251a32a) |
+| 🐙 GitHub | [m7-code](https://github.com/m7-code) |
+| 📸 Instagram | [m7_shrewd](https://www.instagram.com/m7_shrewd/) |
+| 📱 WhatsApp | [+92 318 4533738](https://wa.me/923184533738) |
+| 📧 Email | mughiraasad6@gmail.com |
+
+---
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+<p align="center">Built with ❤️ by Muhammad Mughira Asad</p>
