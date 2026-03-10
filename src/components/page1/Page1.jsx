@@ -38,7 +38,8 @@ export default function Page1() {
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
     controls.enableZoom = false;
-    controls.autoRotate = false;
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 1.2;
     controls.maxPolarAngle = Math.PI / 1.8;
     controls.minPolarAngle = Math.PI / 3;
 
@@ -122,7 +123,7 @@ export default function Page1() {
   }, []);
 
   return (
-    // overflow-hidden HATAYA — warna baaki pages scroll nahi hoti
+    // overflow-hidden HATAYA — 
     <div
       style={{ minHeight: "100vh", paddingTop: "80px", position: "relative" }}
       className="flex flex-col md:flex-row items-center"
