@@ -203,7 +203,7 @@ export default function Page1() {
             marginBottom: "1.5rem",
           }}
         >
-          Full Stack{" "}
+          AI Engineer and Full Stack{" "}
           <span style={{ color: "#7DF9FF" }}>Developer</span>
         </h2>
 
