@@ -158,6 +158,16 @@ export default function Page1() {
         className="flex-1 order-2 md:order-1 flex flex-col items-center md:items-start text-center md:text-left w-full"
         style={{ padding: "40px 48px", maxWidth: 600 }}
       >
+  <img
+  src="/muhammad-mughira-asad.jpg"
+  alt="Muhammad Mughira Asad AI Engineer and Full Stack Developer"
+  style={{
+    width: "0px",
+    height: "0px",
+    opacity: 0,
+    position: "absolute"
+  }}
+/>
         <p
           style={{
             color: "#7DF9FF",
