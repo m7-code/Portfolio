@@ -159,7 +159,7 @@ export default function Page1() {
         style={{ padding: "40px 48px", maxWidth: 600 }}
       >
   <img
-  src="/muhammad-mughira-asad.jpg"
+  src="/muhammad-mughira-asad.png"
   alt="Muhammad Mughira Asad AI Engineer and Full Stack Developer"
   style={{
     width: "0px",
