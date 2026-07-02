@@ -56,7 +56,7 @@ export default function Page1() {
 
     const loader = new GLTFLoader();
     loader.load(
-      "/computer.glb",
+      "/earth.glb",
       (gltf) => {
         const model = gltf.scene;
         const box = new THREE.Box3().setFromObject(model);
@@ -203,8 +203,8 @@ export default function Page1() {
             marginBottom: "1.5rem",
           }}
         >
-          AI Engineer and Full Stack{" "}
-          <span style={{ color: "#7DF9FF" }}>Developer</span>
+          Full Stack AI {" "}
+          <span style={{ color: "#7DF9FF" }}>Engineer</span>
         </h2>
 
         <p
