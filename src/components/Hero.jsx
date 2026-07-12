@@ -1,56 +1,15 @@
 import { motion } from "framer-motion";
-
-const navLinks = ["About", "Skills", "Projects", "Contact"];
-
-export default function Navbar() {
-  return (
-    <motion.nav
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      className="fixed top-0 left-0 w-full z-50 grid grid-cols-3 items-center px-6 md:px-16 py-6 md:py-8"
-    >
-      <span
-        style={{ fontFamily: "'Syne', sans-serif" }}
-        className="text-white font-bold text-lg tracking-tight"
-      >
-        M7<span className="text-[#7DF9FF]">.</span>
-      </span>
-
-      <ul className="hidden md:flex items-center justify-center gap-24">
-        {navLinks.map((link, i) => (
-          <motion.li
-            key={link}
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
-          >
-            <a
-              href={`#${link.toLowerCase()}`}
-              style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600 }}
-              className="text-white/80 hover:text-white text-xs tracking-[0.15em] uppercase transition-colors duration-300"
-            >
-              {link}
-            </a>
-          </motion.li>
-        ))}
-      </ul>
-
-      <div />
-    </motion.nav>
-  );
-}
+import Navbar from "./Navbar";
 
 function FloatingAvatar() {
   return (
     <div className="relative flex items-center justify-center w-80 h-80 md:w-96 md:h-96">
       <div className="absolute w-52 h-52 md:w-64 md:h-64 rounded-full bg-gradient-to-br from-[#7DF9FF]/25 to-[#B57BFF]/25 blur-3xl" />
- 
+
       <motion.div
         animate={{ y: [0, -14, 0] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="relative w-56 h-56 md:w-72 md:h-72 rounded-full p-[3px]
-                   bg-gradient-to-br from-[#7DF9FF] to-[#B57BFF]"
+        className="relative w-56 h-56 md:w-72 md:h-72 rounded-full p-[3px] bg-gradient-to-br from-[#7DF9FF] to-[#B57BFF]"
       >
         <img
           src="/muhammad-mughira-asad.png"
@@ -61,12 +20,13 @@ function FloatingAvatar() {
     </div>
   );
 }
+
 export function Hero() {
   return (
-    <section className="relative w-full h-screen bg-[#0A0A0A] overflow-hidden">
+    <section className="snap-start relative w-full h-screen bg-[#0A0A0A] overflow-x-hidden">
       <Navbar />
 
-      {/* ---- MOBILE: simple stacked flow ---- */}
+      {/* Mobile */}
       <div className="md:hidden flex flex-col items-center justify-center h-full px-6 pt-20 gap-6 text-center">
         <h1
           style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800 }}
@@ -74,7 +34,9 @@ export function Hero() {
         >
           HI, I'M MUGHIRA<span className="text-[#7DF9FF]">.</span>
         </h1>
+
         <FloatingAvatar />
+
         <p
           style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           className="text-white/50 text-sm leading-relaxed max-w-xs"
@@ -82,24 +44,23 @@ export function Hero() {
           Full stack AI engineer building MERN and PERN apps, ML and deep
           learning systems, RAG pipelines and autonomous AI agents.
         </p>
+
         <a
           href="#contact"
-          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-          className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-black text-base font-semibold
-                     bg-gradient-to-r from-[#7DF9FF] to-[#B57BFF] shadow-[0_0_30px_rgba(125,249,255,0.25)]"
+          className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-black text-base font-semibold bg-gradient-to-r from-[#7DF9FF] to-[#B57BFF]"
         >
           Contact Me
         </a>
       </div>
 
-      {/* ---- DESKTOP: absolute overlapping composition (matches reference) ---- */}
+      {/* Desktop */}
       <div className="hidden md:block relative w-full h-full">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
           style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800 }}
-          className="absolute top-[16%] left-16 z-0 text-white leading-none tracking-tight select-none whitespace-nowrap text-[clamp(2.5rem,6.5vw,5.5rem)]"
+          className="absolute top-[16%] left-20 text-white leading-none tracking-tight text-[clamp(2.5rem,6.5vw,5.5rem)]"
         >
           HI, I'M MUGHIRA<span className="text-[#7DF9FF]">.</span>
         </motion.h1>
@@ -108,7 +69,7 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.5 }}
-          className="absolute top-[30%] left-1/2 -translate-x-1/2 z-10"
+          className="absolute top-[30%] left-1/2 -translate-x-1/2"
         >
           <FloatingAvatar />
         </motion.div>
@@ -117,8 +78,8 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
-          style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 500 }}
-          className="absolute bottom-[30%] left-16 z-16 w-64 text-white/70 text-lg leading-relaxed"
+          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+          className="absolute bottom-[30%] left-20 w-64 text-white/70 text-lg leading-relaxed"
         >
           Full stack AI engineer building MERN and PERN apps, ML and deep
           learning systems, RAG pipelines and autonomous AI agents.
@@ -131,10 +92,7 @@ export function Hero() {
           whileHover={{ scale: 1.08, rotate: -4 }}
           whileTap={{ scale: 0.95 }}
           transition={{ duration: 0.5, delay: 0.9 }}
-          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-         className="absolute top-[42%] right-16 z-10 inline-flex items-center gap-2 px-20 py-10 rounded-full
-           text-black text-3xl font-bold bg-gradient-to-r from-[#7DF9FF] to-[#B57BFF]
-           shadow-[0_0_40px_rgba(125,249,255,0.35)]"
+          className="absolute top-[42%]  right-10 inline-flex items-center gap-2 px-20 py-10 rounded-full text-black text-5xl font-bold bg-gradient-to-r from-[#7DF9FF] to-[#B57BFF] shadow-[0_0_40px_rgba(125,249,255,0.35)]"
         >
           Contact Me
         </motion.a>
