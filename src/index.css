@@ -17,7 +17,6 @@ body,
 html {
   scroll-behavior: smooth;
   scroll-snap-type: y mandatory;
-  scrollbar-width: none; /* Firefox: hide scrollbar */
 }
 
 body {
@@ -31,9 +30,19 @@ section {
   min-height: 100vh;
 }
 
-/* Scrollbar — hidden but scroll still works */
+/* Scrollbar — thin and styled, but visible */
 ::-webkit-scrollbar {
-  display: none;
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #0A0A0A;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(125, 249, 255, 0.35);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #7DF9FF;
 }
 
 /* Selection */
