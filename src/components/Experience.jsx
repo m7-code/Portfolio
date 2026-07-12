@@ -29,11 +29,11 @@ export default function Experience() {
   className="max-w-xl"
 >
   <span
-  className="inline-flex items-center rounded-full border border-[#2A2A2A]/25 bg-[#2A2A2A]/10 px-4 py-2 text-xs uppercase tracking-[0.25em] text-[#FF3B3B]"
-  style={{ fontFamily: "'Space Grotesk', sans-serif" }}
->
-  Currently Working
-</span>
+    className="inline-flex items-center rounded-full border border-[#7DF9FF]/20 bg-[#7DF9FF]/10 px-4 py-2 text-xs uppercase tracking-[0.25em] text-[#7DF9FF]"
+    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+  >
+    Currently Working
+  </span>
 
   <h2
     style={{ fontFamily: "'Syne', sans-serif" }}
@@ -41,7 +41,7 @@ export default function Experience() {
   >
     Full Stack
     <br />
-    <span className="text-[#B8B8B8]">AI Engineer</span>
+    <span className="text-[#7DF9FF]">AI Engineer</span>
   </h2>
 
   <div className="mt-10">
@@ -68,7 +68,7 @@ export default function Experience() {
 
        
 
-        {/* RIGHT IMAGE */}
+       {/* RIGHT IMAGE */}
 
 <motion.div
   initial={{ opacity: 0, x: 80, scale: 0.95 }}
