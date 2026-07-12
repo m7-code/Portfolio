@@ -7,16 +7,19 @@
   box-sizing: border-box;
 }
 
-html,
+/* ONLY html owns scrolling — body/#root must NOT have their own overflow rules,
+   otherwise the browser creates two separate scroll contexts (double scrollbar bug). */
+html {
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
 body,
 #root {
   width: 100%;
-  overflow-x: hidden;
-}
-
-html {
-  scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
 }
 
 body {

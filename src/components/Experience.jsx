@@ -1,89 +1,107 @@
 import { motion } from "framer-motion";
 
-const skills = [
-  "React",
-  "Node.js",
-  "Express",
-  "MongoDB",
-  "PostgreSQL",
-  "Python",
-  "FastAPI",
-  "AI / ML",
-];
-
 export default function Experience() {
   return (
     <section
       id="experience"
-     className="snap-start min-h-screen bg-[#0A0A0A] text-white flex items-center justify-center px-6 md:px-12 xl:px-24 py-20"
+      className="snap-start bg-[#0A0A0A] text-white"
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        paddingLeft: "6vw",
+        paddingRight: "6vw",
+        paddingTop: "80px",
+        paddingBottom: "80px",
+      }}
     >
-      <div className="mx-auto grid w-full max-w-7xl grid-cols-1 lg:grid-cols-2 items-center gap-24 lg:gap-32">
-
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+          gap: "64px",
+          width: "100%",
+          maxWidth: "1400px",
+          margin: "0 auto",
+          alignItems: "center",
+        }}
+      >
         {/* LEFT SIDE */}
-
         <motion.div
-  initial={{ opacity: 0, x: -80 }}
-  whileInView={{ opacity: 1, x: 0 }}
-  viewport={{ once: true, amount: 0.4 }}
-  transition={{ duration: 0.8 }}
-  className="max-w-xl"
->
-  <span
-    className="inline-flex items-center rounded-full border border-[#7DF9FF]/20 bg-[#7DF9FF]/10 px-4 py-2 text-xs uppercase tracking-[0.25em] text-[#7DF9FF]"
-    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-  >
-    Currently Working
-  </span>
+          initial={{ opacity: 0, x: -80 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.8 }}
+          style={{ maxWidth: "560px", margin: "0 auto", textAlign: "center" }}
+        >
+          <span
+            className="inline-flex items-center rounded-full border border-[#7DF9FF]/20 bg-[#7DF9FF]/10 text-[#7DF9FF]"
+            style={{
+              fontFamily: "'Space Grotesk', sans-serif",
+              padding: "8px 16px",
+              fontSize: "12px",
+              textTransform: "uppercase",
+              letterSpacing: "0.25em",
+            }}
+          >
+            Currently Working
+          </span>
 
-  <h2
-    style={{ fontFamily: "'Syne', sans-serif" }}
-    className="mt-8 text-5xl lg:text-7xl font-extrabold leading-[0.95]"
-  >
-    Full Stack
-    <br />
-    <span className="text-[#7DF9FF]">AI Engineer</span>
-  </h2>
+          <h2
+            style={{
+              fontFamily: "'Syne', sans-serif",
+              fontWeight: 800,
+              lineHeight: 0.95,
+              marginTop: "32px",
+              fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
+            }}
+          >
+            Full Stack
+            <br />
+            <span className="text-[#7DF9FF]">AI Engineer</span>
+          </h2>
 
-  <div className="mt-10">
-    <h3 className="text-3xl font-bold">SoftSuit Tech</h3>
+          <div style={{ marginTop: "40px" }}>
+            <h3 style={{ fontSize: "1.875rem", fontWeight: 700 }}>SoftSuit Tech</h3>
+            <p
+              className="text-white/45"
+              style={{ fontFamily: "'Space Grotesk', sans-serif", marginTop: "8px", fontSize: "1.125rem" }}
+            >
+              Multan, Pakistan
+            </p>
+          </div>
 
-    <p
-      className="mt-2 text-white/45 text-lg"
-      style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-    >
-      Multan, Pakistan
-    </p>
-  </div>
+          <p
+            className="text-white/65"
+            style={{
+              fontFamily: "'Space Grotesk', sans-serif",
+              marginTop: "40px",
+              lineHeight: 2.25,
+              fontSize: "1.125rem",
+            }}
+          >
+            Working as a MERN and PERN Stack Developer, building scalable
+            full-stack web applications while integrating AI-powered
+            features, machine learning, and intelligent automation into
+            modern software products.
+          </p>
+        </motion.div>
 
-  <p
-    className="mt-10 text-white/65 leading-9 text-lg"
-    style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-  >
-    Working as a MERN and PERN Stack Developer, building scalable
-    full-stack web applications while integrating AI-powered
-    features, machine learning, and intelligent automation into
-    modern software products.
-  </p>
-</motion.div>
-
-       
-
-       {/* RIGHT IMAGE */}
-
-<motion.div
-  initial={{ opacity: 0, x: 80, scale: 0.95 }}
-  whileInView={{ opacity: 1, x: 0, scale: 1 }}
-  transition={{ duration: 0.8 }}
-  className="flex justify-center items-center"
->
-  <img
-    src="/epage.png"
-    alt="Experience"
-    className="w-full max-w-[450px] h-auto object-contain"
-    draggable={false}
-  />
-</motion.div>
-
+        {/* RIGHT IMAGE */}
+        <motion.div
+          initial={{ opacity: 0, x: 80, scale: 0.95 }}
+          whileInView={{ opacity: 1, x: 0, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+        >
+          <img
+            src="/epage.png"
+            alt="Experience"
+            style={{ width: "100%", maxWidth: "420px", height: "auto", objectFit: "contain" }}
+            draggable={false}
+          />
+        </motion.div>
       </div>
     </section>
   );
