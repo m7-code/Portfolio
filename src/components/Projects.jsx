@@ -21,9 +21,9 @@ const projects = [
     title: "BotForge",
     description: "Multi-tenant SaaS chatbot platform — users embed an AI widget trained on their own crawled website content.",
     live: "",
-    github: "https://github.com/your-username/botforge",
-    images: ["", "", ""],
-    mobileImage: "",
+    github: "https://github.com/m7-code/Botforge.git",
+    images: ["bpic1.png", "bpic2.png", "bpic3.png"],
+    mobileImage: "mbpic.png",
     accent: "from-[#B57BFF]/25 to-[#7DF9FF]/10",
   },
   {
