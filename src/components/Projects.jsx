@@ -28,12 +28,12 @@ const projects = [
   },
   {
     number: "03",
-    title: "RAG Chatbot",
-    description: "Retrieval-augmented chatbot built with n8n, Qdrant, and Groq's LLaMA 3.3, integrated into a live app via a proxy route.",
+    title: "AI Agents",
+    description: "Ai agents build with n8n.",
     live: "",
-    github: "https://github.com/your-username/rag-chatbot",
-    images: ["", "", ""],
-    mobileImage: "",
+    github: "https://github.com/m7-code/Ai-Agents.git",
+    images: ["apic1.png", "apic2.png", "apic3.png"],
+    mobileImage: "mapic.png",
     accent: "from-[#7DF9FF]/20 to-[#B57BFF]/20",
   },
 ];
