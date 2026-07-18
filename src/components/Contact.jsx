@@ -9,10 +9,10 @@ function MailIcon() {
   );
 }
 
-function PhoneIcon() {
+function WhatsAppIcon() {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.29 1.257 12.06 12.06 0 0 0 6.06 6.06Z" />
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.6 6.32A8.86 8.86 0 0 0 12.02 3.5c-4.89 0-8.87 3.97-8.87 8.86 0 1.56.41 3.08 1.19 4.42L3.5 20.5l3.83-1.01a8.86 8.86 0 0 0 4.68 1.33h.01c4.89 0 8.87-3.97 8.87-8.86a8.8 8.8 0 0 0-2.6-6.27zm-5.58 13.6h-.01a7.35 7.35 0 0 1-3.76-1.03l-.27-.16-2.8.74.75-2.73-.18-.28a7.35 7.35 0 0 1-1.13-3.9c0-4.06 3.31-7.37 7.38-7.37a7.34 7.34 0 0 1 5.22 2.16 7.32 7.32 0 0 1 2.16 5.21c0 4.06-3.31 7.36-7.36 7.36zm4.04-5.52c-.22-.11-1.31-.65-1.51-.72-.2-.07-.35-.11-.5.11s-.58.72-.71.87-.26.16-.48.05a6.03 6.03 0 0 1-1.78-1.1 6.68 6.68 0 0 1-1.23-1.53c-.13-.22 0-.34.1-.45.1-.1.22-.26.33-.39.11-.13.15-.22.22-.37.07-.15.04-.28-.02-.39-.07-.11-.5-1.2-.68-1.65-.18-.43-.36-.37-.5-.38h-.43c-.15 0-.39.06-.59.28-.2.22-.77.75-.77 1.84 0 1.08.79 2.13.9 2.28.11.15 1.55 2.36 3.75 3.31.52.23.93.36 1.25.46.53.17 1 .14 1.38.09.42-.06 1.31-.53 1.5-1.05.18-.51.18-.95.13-1.05-.06-.09-.2-.15-.42-.26z" />
     </svg>
   );
 }
@@ -35,10 +35,10 @@ const contacts = [
     Icon: MailIcon,
   },
   {
-    label: "Phone",
+    label: "WhatsApp",
     value: "0318 4533738",
-    href: "tel:+923184533738",
-    Icon: PhoneIcon,
+    href: "https://wa.me/923184533738",
+    Icon: WhatsAppIcon,
   },
   {
     label: "LinkedIn",
@@ -105,8 +105,8 @@ export function Contact() {
             <motion.a
               key={c.label}
               href={c.href}
-              target={c.label === "LinkedIn" ? "_blank" : undefined}
-              rel={c.label === "LinkedIn" ? "noopener noreferrer" : undefined}
+              target={c.label === "LinkedIn" || c.label === "WhatsApp" ? "_blank" : undefined}
+              rel={c.label === "LinkedIn" || c.label === "WhatsApp" ? "noopener noreferrer" : undefined}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.4 }}
