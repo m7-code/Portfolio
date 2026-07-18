@@ -9,11 +9,11 @@ const projects = [
   {
     number: "01",
     title: "PneumoFusion",
-    description: "AI-powered pneumonia detection from chest X-rays — Final Year Project with a FastAPI model backend and MERN frontend.",
-    live: "",
+    description: "AI-powered pneumonia detection from chest X-rays using a MERN stack web application.",
+    live: "https://pneumonia-web-mern.vercel.app/",
     github: "https://github.com/your-username/pneumofusion",
-    images: ["", "", ""],
-    mobileImage: "",
+    images: ["ppic1.png", "ppic2.png", "ppic3.png"],
+    mobileImage: "mppic.jpeg",
     accent: "from-[#7DF9FF]/25 to-[#B57BFF]/10",
   },
   {
@@ -40,13 +40,20 @@ const projects = [
 
 function ImageTile({ src, accent, style, className }) {
   return (
-    <div className={`relative overflow-hidden rounded-2xl ${className || ""}`} style={style}>
-      {src ? (
-        <img src={src} alt="" className="absolute inset-0 w-full h-full object-cover" />
-      ) : (
-        <div className={`absolute inset-0 bg-gradient-to-br ${accent} bg-[#111]`} />
-      )}
-    </div>
+   <div
+  className={`relative overflow-hidden rounded-2xl bg-gray-100 ${className || ""}`}
+  style={style}
+>
+  {src ? (
+    <img
+      src={src}
+      alt=""
+      className="absolute inset-0 w-full h-full object-contain rounded-2xl"
+    />
+  ) : (
+    <div className={`absolute inset-0 bg-gradient-to-br ${accent} bg-[#111]`} />
+  )}
+</div>
   );
 }
 
