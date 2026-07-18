@@ -82,21 +82,27 @@ function ProjectHeader({ project, href, label }) {
           </p>
         </div>
       </div>
-
+ 
       <a
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        style={{ fontFamily: "'Space Grotesk', sans-serif", padding: "12px 26px", fontSize: "14px", fontWeight: 600 }}
-        className="shrink-0 inline-flex items-center gap-2 border border-white/25 hover:border-[#7DF9FF]
-                   rounded-full text-white/80 hover:text-white transition-colors duration-300"
+        style={{
+          fontFamily: "'Space Grotesk', sans-serif",
+          padding: "12px 26px",
+          fontSize: "14px",
+          fontWeight: 600,
+          boxShadow: "0 0 20px rgba(125,249,255,0.25)",
+        }}
+        className="shrink-0 inline-flex items-center gap-2 border border-[#7DF9FF]/40 hover:border-[#7DF9FF]
+                   rounded-full text-white/90 hover:text-white transition-all duration-300
+                   hover:shadow-[0_0_30px_rgba(125,249,255,0.5)]"
       >
         {label}
       </a>
     </div>
   );
 }
-
 function ProjectCard({ project, index }) {
   const href = project.live || project.github;
   const label = project.live ? "Live Project" : "View on GitHub";
