@@ -106,7 +106,7 @@ function ProjectCard({ project, index }) {
 
   return (
     <>
-      {/* ---- MOBILE: cascading peek stack ---- */}
+      {/*  MOBILE: cascading peek stack  */}
       <div
         className="md:hidden sticky w-full flex justify-center"
         style={{ top: `${topOffset}px`, zIndex: index + 1, paddingLeft: "16px", paddingRight: "16px" }}
@@ -138,7 +138,7 @@ function ProjectCard({ project, index }) {
         </motion.div>
       </div>
 
-      {/* ---- DESKTOP: cascading peek stack, centered, fixed height ---- */}
+      {/*  DESKTOP: cascading peek stack, centered, fixed height */}
       <div
         className="hidden md:flex sticky w-full justify-center"
         style={{ top: `${topOffset}px`, zIndex: index + 1, paddingLeft: "24px", paddingRight: "24px" }}
