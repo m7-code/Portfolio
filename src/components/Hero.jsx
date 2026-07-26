@@ -80,7 +80,7 @@ export function Hero() {
     <section className="snap-start relative w-full h-screen bg-[#0A0A0A] overflow-hidden">
       <Navbar />
 
-      {/* ---- MOBILE: simple stacked flow ---- */}
+      {/*MOBILE: simple stacked flow */}
       <div className="md:hidden flex flex-col items-center justify-center h-full px-6 pt-20 gap-6 text-center">
         <h1
           style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800 }}
@@ -113,7 +113,7 @@ export function Hero() {
         </a>
       </div>
 
-      {/* ---- DESKTOP: absolute overlapping composition (matches reference) ---- */}
+      {/*  DESKTOP: absolute overlapping composition*/}
       <div className="hidden md:block relative w-full h-full">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
