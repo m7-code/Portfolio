@@ -41,8 +41,8 @@ const projects = [
 
 // How far down (in px) each successive card's sticky point sits.
 // This is what creates the peek — earlier cards' top edges stay visible.
-const STEP = 26;
-const BASE_TOP = 24;
+const STEP = 100;
+const BASE_TOP = 70;
 
 function ImageTile({ src, accent, style, className }) {
   return (
@@ -122,7 +122,7 @@ function ProjectCard({ project, index }) {
           transition={{ duration: 0.6 }}
           style={{
             width: "100%",
-            height: "440px",
+            height: "560px",
             padding: "22px",
             gap: "16px",
             boxShadow: "0 -12px 30px rgba(0,0,0,0.55), 0 0 40px rgba(125,249,255,0.08)",
