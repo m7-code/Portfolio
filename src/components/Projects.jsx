@@ -1,10 +1,6 @@
 import { motion } from "framer-motion";
 
-// EDIT THIS: replace each `images[i]` with your real screenshot path
-// (put files in /public/projects/ and use "/projects/xxx.png"),
-// `mobileImage` is a SEPARATE image just for the mobile view — e.g. a screenshot
-// of how the site looks on a phone. Fill in `live` / `github` links too.
-// If `live` is empty, button falls back to `github`.
+
 const projects = [
   {
     number: "01",
@@ -39,7 +35,7 @@ const projects = [
 ];
 
 
-// How far down (in px) each successive card's sticky point sits.
+// How far down each successive card's sticky point sits.
 // This is what creates the peek — earlier cards' top edges stay visible.
 const STEP = 100;
 const BASE_TOP = 70;
