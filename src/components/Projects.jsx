@@ -38,22 +38,21 @@ const projects = [
   },
 ];
 
+
+// How far down (in px) each successive card's sticky point sits.
+// This is what creates the peek — earlier cards' top edges stay visible.
+const STEP = 26;
+const BASE_TOP = 24;
+
 function ImageTile({ src, accent, style, className }) {
   return (
-   <div
-  className={`relative overflow-hidden rounded-2xl bg-gray-100 ${className || ""}`}
-  style={style}
->
-  {src ? (
-    <img
-      src={src}
-      alt=""
-      className="absolute inset-0 w-full h-full object-contain rounded-2xl"
-    />
-  ) : (
-    <div className={`absolute inset-0 bg-gradient-to-br ${accent} bg-[#111]`} />
-  )}
-</div>
+    <div className={`relative overflow-hidden rounded-2xl ${className || ""}`} style={style}>
+      {src ? (
+        <img src={src} alt="" className="absolute inset-0 w-full h-full object-contain" />
+      ) : (
+        <div className={`absolute inset-0 bg-gradient-to-br ${accent} bg-[#111]`} />
+      )}
+    </div>
   );
 }
 
@@ -82,7 +81,7 @@ function ProjectHeader({ project, href, label }) {
           </p>
         </div>
       </div>
- 
+
       <a
         href={href}
         target="_blank"
@@ -103,25 +102,33 @@ function ProjectHeader({ project, href, label }) {
     </div>
   );
 }
+
 function ProjectCard({ project, index }) {
   const href = project.live || project.github;
   const label = project.live ? "Live Project" : "View on GitHub";
+  const topOffset = BASE_TOP + index * STEP;
 
   return (
     <>
-      {/* ---- MOBILE: sticky stack too, but with ONE dedicated mobile image ---- */}
+      {/* ---- MOBILE: cascading peek stack ---- */}
       <div
-        className="md:hidden snap-start sticky top-0 h-screen w-full bg-[#0A0A0A] flex items-center justify-center"
-        style={{ zIndex: index + 1, padding: "16px" }}
+        className="md:hidden sticky w-full flex justify-center"
+        style={{ top: `${topOffset}px`, zIndex: index + 1, paddingLeft: "16px", paddingRight: "16px" }}
       >
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
-          className="relative w-full border border-white/15 bg-white/[0.04] backdrop-blur-xl shadow-2xl
+          style={{
+            width: "100%",
+            height: "440px",
+            padding: "22px",
+            gap: "16px",
+            boxShadow: "0 -12px 30px rgba(0,0,0,0.55), 0 0 40px rgba(125,249,255,0.08)",
+          }}
+          className="relative border border-white/15 bg-[#111318] backdrop-blur-xl
                      rounded-[1.75rem] flex flex-col overflow-hidden"
-          style={{ height: "100%", maxHeight: "88vh", padding: "24px", gap: "20px" }}
         >
           <div className={`absolute -top-24 -right-24 w-72 h-72 rounded-full bg-gradient-to-br ${project.accent} blur-3xl pointer-events-none`} />
 
@@ -135,19 +142,26 @@ function ProjectCard({ project, index }) {
         </motion.div>
       </div>
 
-      {/* ---- DESKTOP: sticky glass stack, left image bigger than the two right ones ---- */}
+      {/* ---- DESKTOP: cascading peek stack, centered, fixed height ---- */}
       <div
-        className="hidden md:flex snap-start sticky top-0 h-screen w-full bg-[#0A0A0A] items-center justify-center"
-        style={{ zIndex: index + 1, padding: "40px" }}
+        className="hidden md:flex sticky w-full justify-center"
+        style={{ top: `${topOffset}px`, zIndex: index + 1, paddingLeft: "24px", paddingRight: "24px" }}
       >
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.7 }}
-          className="relative w-full max-w-6xl border border-white/15 bg-white/[0.04] backdrop-blur-xl shadow-2xl
+          style={{
+            width: "100%",
+            maxWidth: "1100px",
+            height: "560px",
+            padding: "44px",
+            gap: "28px",
+            boxShadow: "0 -14px 40px rgba(0,0,0,0.55), 0 0 50px rgba(125,249,255,0.08)",
+          }}
+          className="relative border border-white/15 bg-[#111318] backdrop-blur-xl
                      rounded-[2.5rem] flex flex-col overflow-hidden"
-          style={{ height: "100%", maxHeight: "90vh", padding: "56px", gap: "32px" }}
         >
           <div className={`absolute -top-24 -right-24 w-72 h-72 rounded-full bg-gradient-to-br ${project.accent} blur-3xl pointer-events-none`} />
 
@@ -169,7 +183,11 @@ function ProjectCard({ project, index }) {
 
 export function Projects() {
   return (
-    <section id="projects" className="relative w-full bg-[#0A0A0A]">
+    <section
+      id="projects"
+      className="relative w-full bg-[#0A0A0A]"
+      style={{ paddingBottom: "50vh" }}
+    >
       {projects.map((project, i) => (
         <ProjectCard key={project.number} project={project} index={i} />
       ))}
