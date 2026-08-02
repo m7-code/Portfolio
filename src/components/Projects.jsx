@@ -42,16 +42,31 @@ const BASE_TOP = 70;
 
 function ImageTile({ src, accent, style, className }) {
   return (
-    <div className={`relative overflow-hidden rounded-2xl ${className || ""}`} style={style}>
+    <div
+      className={`relative overflow-hidden rounded-2xl bg-[#0d0d10] ${className || ""}`}
+      style={style}
+    >
       {src ? (
-        <img src={src} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <>
+          {/* blurred zoomed copy fills all empty space */}
+          <img
+            src={src}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 opacity-40"
+          />
+          {/* actual full image, uncropped, centered on top */}
+          <img
+            src={src}
+            alt=""
+            className="absolute inset-0 w-full h-full object-contain"
+          />
+        </>
       ) : (
         <div className={`absolute inset-0 bg-gradient-to-br ${accent} bg-[#111]`} />
       )}
     </div>
   );
 }
-
 function ProjectHeader({ project, href, label }) {
   return (
     <div className="relative z-10 flex flex-wrap items-start justify-between gap-4">
