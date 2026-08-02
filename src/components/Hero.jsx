@@ -1,9 +1,16 @@
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
-import { useState } from "react";
+import {
+  motion,
+  useScroll,
+  useMotionValueEvent,
+  useMotionValue,
+  useTransform,
+  animate,
+} from "framer-motion";
+import { useState, useEffect, useRef } from "react";
 
 const navLinks = ["About", "Experience", "Projects", "Skills", "Contact"];
 
-export default function Navbar() {
+function Navbar() {
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
 
@@ -54,21 +61,71 @@ export default function Navbar() {
   );
 }
 
-function FloatingAvatar() {
+/* ---------------- HANGING DRAGGABLE IMAGE CARD ---------------- */
+const ROPE_LENGTH = 110; // bigger rope
+
+function HangingImageCard({ src, size = 320 }) {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const rotate = useTransform(x, [-150, 150], [-20, 20]);
+  const [ropeEnd, setRopeEnd] = useState({ x: size / 2, y: 0 });
+  const idleControls = useRef(null);
+
+  const startIdleSway = () => {
+    idleControls.current?.stop();
+    idleControls.current = animate(x, [0, 18, -14, 10, -6, 0], {
+      duration: 4.5,
+      ease: "easeInOut",     
+    });
+  };
+
+  useEffect(() => {
+    startIdleSway(); // swings by itself from the start, no interaction needed
+    return () => idleControls.current?.stop();
+  }, []);
+
+  useEffect(() => {
+    const unsubX = x.on("change", (v) => setRopeEnd((r) => ({ ...r, x: size / 2 + v })));
+    const unsubY = y.on("change", (v) => setRopeEnd((r) => ({ ...r, y: v })));
+    return () => {
+      unsubX();
+      unsubY();
+    };
+  }, [x, y, size]);
+
   return (
-    <div className="relative flex items-center justify-center w-80 h-80 md:w-96 md:h-96">
-      <div className="absolute w-52 h-52 md:w-64 md:h-64 rounded-full bg-gradient-to-br from-[#7DF9FF]/25 to-[#B57BFF]/25 blur-3xl" />
+    <div className="relative flex flex-col items-center" style={{ width: size }}>
+      {/* rope/string, stretches as the card is dragged */}
+      <svg width={size} height={ROPE_LENGTH} className="pointer-events-none overflow-visible">
+        <line
+          x1={size / 2}
+          y1={0}
+          x2={ropeEnd.x}
+          y2={Math.max(4, ROPE_LENGTH + ropeEnd.y)}
+          stroke="rgba(255,255,255,0.45)"
+          strokeWidth={2}
+        />
+      </svg>
+
+      {/* pin/nail the rope hangs from */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-white/70 shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
 
       <motion.div
-        animate={{ y: [0, -14, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="relative w-56 h-56 md:w-72 md:h-72 rounded-full p-[3px]
-                   bg-gradient-to-br from-[#7DF9FF] to-[#B57BFF]"
+        drag
+        dragElastic={0.15}
+        dragSnapToOrigin
+        dragTransition={{ bounceStiffness: 400, bounceDamping: 12 }}
+        onDragStart={() => idleControls.current?.stop()}
+        onDragEnd={() => setTimeout(startIdleSway, 600)}
+        style={{ x, y, rotate, width: size, height: size }}
+        className="rounded-2xl overflow-hidden cursor-grab active:cursor-grabbing
+                   shadow-[0_0_50px_rgba(125,249,255,0.15)] -mt-1 border border-white/10"
       >
         <img
-          src="/muhammad-mughira-asad.png"
-          alt="Muhammad Mughira Asad"
-          className="w-full h-full object-cover rounded-full border-4 border-[#0A0A0A]"
+          src={src}
+          alt=""
+          draggable={false}
+          className="w-full h-full object-cover select-none pointer-events-none"
         />
       </motion.div>
     </div>
@@ -77,10 +134,10 @@ function FloatingAvatar() {
 
 export function Hero() {
   return (
-    <section className="snap-start relative w-full h-screen bg-[#0A0A0A] overflow-hidden">
+    <section className="relative w-full h-screen bg-[#0A0A0A] overflow-hidden">
       <Navbar />
 
-      {/*MOBILE: simple stacked flow */}
+      {/* ---------- MOBILE ---------- */}
       <div className="md:hidden flex flex-col items-center justify-center h-full px-6 pt-20 gap-6 text-center">
         <h1
           style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800 }}
@@ -88,7 +145,7 @@ export function Hero() {
         >
           HI, I'M MUGHIRA<span className="text-[#7DF9FF]">.</span>
         </h1>
-        <FloatingAvatar />
+        <HangingImageCard src="/muhammad-mughira-asad.png" size={220} />
         <p
           style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           className="text-white/50 text-sm leading-relaxed max-w-xs"
@@ -96,70 +153,42 @@ export function Hero() {
           Full stack AI engineer building MERN and PERN apps, ML and deep
           learning systems, RAG pipelines and autonomous AI agents.
         </p>
-        <a
-          href="#contact"
-          style={{
-            fontFamily: "'Space Grotesk', sans-serif",
-            padding: "18px 40px",
-            fontSize: "20px",
-            fontWeight: 700,
-            transform: "rotate(-6deg)",
-            marginTop: "24px",
-          }}
-          className="inline-flex items-center gap-2 rounded-full text-black
-                     bg-gradient-to-r from-[#7DF9FF] to-[#B57BFF] shadow-[0_0_30px_rgba(125,249,255,0.25)]"
-        >
-          Contact Me
-        </a>
       </div>
 
-      {/*  DESKTOP: absolute overlapping composition*/}
+      {/* ---------- DESKTOP ---------- */}
       <div className="hidden md:block relative w-full h-full">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
           style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800 }}
-          className="absolute top-[16%] left-20 z-0 text-white leading-none tracking-tight select-none whitespace-nowrap text-[clamp(2.5rem,6.5vw,5.5rem)]"
+          className="absolute top-[16%] left-[120px] z-0 text-white leading-none tracking-tight select-none whitespace-nowrap text-[clamp(2.5rem,6.5vw,5.5rem)]"
         >
           HI, I'M MUGHIRA<span className="text-[#7DF9FF]">.</span>
         </motion.h1>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, delay: 0.5 }}
-          className="absolute top-[30%] left-1/2 -translate-x-1/2 z-10"
-        >
-          <FloatingAvatar />
-        </motion.div>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
           style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 500 }}
-          className="absolute bottom-[30%] left-20 z-20 w-64 text-white/70 text-lg leading-relaxed"
+          className="absolute bottom-[26%] left-[140px] z-20 w-[376px] text-white/70 text-2xl leading-relaxed"
         >
           Full stack AI engineer building MERN and PERN apps, ML and deep
           learning systems, RAG pipelines and autonomous AI agents.
         </motion.p>
 
-        <motion.a
-          href="#contact"
-          initial={{ opacity: 0, y: 20, rotate: -8 }}
-          animate={{ opacity: 1, y: 0, rotate: -8 }}
-          whileHover={{ scale: 1.08, rotate: -4 }}
-          whileTap={{ scale: 0.95 }}
-          transition={{ duration: 0.5, delay: 0.9 }}
-          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-          className="absolute top-[42%] right-20 z-10 inline-flex items-center gap-2 px-20 py-10 rounded-full
-            text-black text-3xl font-bold bg-gradient-to-r from-[#7DF9FF] to-[#B57BFF]
-            shadow-[0_0_40px_rgba(125,249,255,0.35)]"
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.5 }}
+          className="absolute top-[20%] right-[200px] z-10"
         >
-          Contact Me
-        </motion.a>
+          <HangingImageCard src="/muhammad-mughira-asad.png" size={320} />
+        </motion.div>
       </div>
     </section>
   );
 }
+
+export default Hero;
