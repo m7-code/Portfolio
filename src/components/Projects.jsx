@@ -44,7 +44,7 @@ function ImageTile({ src, accent, style, className }) {
   return (
     <div className={`relative overflow-hidden rounded-2xl ${className || ""}`} style={style}>
       {src ? (
-        <img src={src} alt="" className="absolute inset-0 w-full h-full object-contain" />
+        <img src={src} alt="" className="absolute inset-0 w-full h-full object-cover" />
       ) : (
         <div className={`absolute inset-0 bg-gradient-to-br ${accent} bg-[#111]`} />
       )}
