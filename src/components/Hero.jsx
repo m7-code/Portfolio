@@ -116,7 +116,7 @@ function HangingImageCard({ src, size = 320 }) {
         dragSnapToOrigin
         dragTransition={{ bounceStiffness: 400, bounceDamping: 12 }}
         onDragStart={() => idleControls.current?.stop()}
-        onDragEnd={() => setTimeout(startIdleSway, 600)}
+        // onDragEnd={() => setTimeout(startIdleSway, 600)}
         style={{ x, y, rotate, width: size, height: size }}
         className="rounded-2xl overflow-hidden cursor-grab active:cursor-grabbing
                    shadow-[0_0_50px_rgba(125,249,255,0.15)] -mt-1 border border-white/10"
