@@ -168,7 +168,7 @@ export default function Home() {
 
 {/* Mobile bottom torn line */}
 <div
-  className="fixed bottom-12 left-0 z-[60] h-5 w-screen md:hidden"
+  className="fixed bottom-11 left-0 z-[60] h-5 w-screen md:hidden"
   style={{
     backgroundImage: "url('/torn-line-horizontal.png')",
     backgroundRepeat: "repeat-x",
