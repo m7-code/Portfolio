@@ -60,7 +60,7 @@ export default function Home() {
   initial={{ opacity: 0, scale: 0.92 }}
   animate={{ opacity: 1, scale: 1 }}
   transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
-  className="relative -translate-y-6 -right-[160px] h-[390px] w-[390px] shrink-0 sm:h-[300px] sm:w-[300px] md:h-[980px] md:w-[940px] md:translate-y-0"
+  className="relative -translate-y-6 md:left-[140px] h-[390px] w-[390px] shrink-0 sm:h-[300px] sm:w-[300px] md:h-[680px] md:w-[740px] md:translate-y-0"
 >
   <img
     src="/muhammad-mughira-asad1.png"
@@ -71,7 +71,7 @@ export default function Home() {
       </div>
 
       {/* Nav buttons – on mobile: bottom, on desktop: left side */}
-      <div className="order-2 -translate-y-26 flex flex-row flex-wrap items-center justify-center gap-5 md:order-1 md:translate-y-0 md:flex-col md:items-start md:gap-10">
+      <div className="order-2 flex flex-row flex-wrap items-center justify-center gap-5 md:order-1 md:mt-10 md:ml-0 md:flex-col md:items-start md:justify-start md:gap-10">
         {navItems.map((item, i) => (
           <TornButton
             key={item.label}
