@@ -46,7 +46,7 @@ export default function TornSection({ id, title, children }) {
         transition={{ duration: 0.4, ease: "easeOut" }}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="absolute left-8 top-10 z-20 flex items-center gap-1.5 sm:left-26 sm:top-32 md:top-8"
+        className="absolute left-8 top-10 z-20 flex items-center gap-1.5 sm:left-32 sm:top-32 md:top-10"
         aria-label="Go back"
       >
         <span className="absolute inset-0 bg-black" style={tornMaskStyle} />

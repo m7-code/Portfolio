@@ -83,7 +83,7 @@ export default function TornNavbar() {
           className="flex-1 px-2 text-center text-2xl leading-tight uppercase tracking-wide text-black xs:text-xs sm:flex-none sm:whitespace-nowrap sm:text-base sm:leading-normal md:text-3xl"
           style={{ fontFamily: "'Permanent Marker', cursive" }}
         >
-          Hi, I am Muhammad Mughira Asad
+          Based in Pakistan | Developer
         </p>
 
         {/* Right — social icons (hidden on mobile) */}

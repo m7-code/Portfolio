@@ -50,37 +50,28 @@ export default function Home() {
     <section className="relative flex min-h-[100dvh] w-full flex-col items-center justify-center gap-6 overflow-hidden bg-black px-4 pt-20 pb-4 md:h-screen md:flex-row md:items-center md:justify-between md:px-16 md:pt-24 lg:px-65">
       {/* Photo block – on mobile: first (top), on desktop: right side */}
       <div className="order-1 flex -translate-y-6 flex-col items-center md:order-2 md:translate-y-0">
-        {/* Short tagline instead of the full name (name now lives in the navbar) */}
-        <motion.p
-          initial={{ opacity: 0, y: -16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-center text-lg uppercase leading-tight text-white sm:text-xl md:text-2xl"
-          style={{ fontFamily: "'Permanent Marker', cursive" }}
-        >
-          Full Stack AI Engineer
-        </motion.p>
+       
 
         {/* Container ka aspect ratio photo (1080x1080 square) ke barabar rakha
             hai — isliye object-cover kuch bhi crop nahi karega, pura photo
             corner-to-corner torn-shape ke andar fit hoga */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.92 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
-          className="relative h-[260px] w-[260px] shrink-0 sm:h-[300px] sm:w-[300px] md:h-[340px] md:w-[340px]"
-          style={tornMaskStyle}
-        >
-          <img
-            src="/muhammad-mughira-asad.png"
-            alt="Muhammad Mughira Asad"
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-        </motion.div>
+        {/* Photo block */}
+<motion.div
+  initial={{ opacity: 0, scale: 0.92 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
+  className="relative -translate-y-6 -right-[160px] h-[390px] w-[390px] shrink-0 sm:h-[300px] sm:w-[300px] md:h-[980px] md:w-[940px] md:translate-y-0"
+>
+  <img
+    src="/muhammad-mughira-asad1.png"
+    alt="Muhammad Mughira Asad"
+    className="h-full w-full object-contain"
+  />
+</motion.div>
       </div>
 
       {/* Nav buttons – on mobile: bottom, on desktop: left side */}
-      <div className="order-2 -translate-y-8 flex flex-row flex-wrap items-center justify-center gap-5 md:order-1 md:translate-y-0 md:flex-col md:items-start md:gap-10">
+      <div className="order-2 -translate-y-26 flex flex-row flex-wrap items-center justify-center gap-5 md:order-1 md:translate-y-0 md:flex-col md:items-start md:gap-10">
         {navItems.map((item, i) => (
           <TornButton
             key={item.label}
