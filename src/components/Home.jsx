@@ -71,7 +71,7 @@ export default function Home() {
       </div>
 
       {/* Nav buttons – on mobile: bottom, on desktop: left side */}
-      <div className="order-2 -translate-y-26 flex flex-row flex-wrap items-center justify-center gap-5 md:order-1 md:mt-10 md:ml-0 md:flex-col md:items-start md:justify-start md:gap-10 md:translate-y-0">
+      <div className="order-2 -translate-y-32 flex flex-row flex-wrap items-center justify-center gap-10 md:order-1 md:mt-10 md:-ml-8 md:flex-col md:items-start md:justify-start md:gap-10 md:translate-y-0 lg:-ml-32">
         {navItems.map((item, i) => (
           <TornButton
             key={item.label}
