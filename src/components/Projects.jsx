@@ -8,7 +8,7 @@ const projects = [
     description: "AI-powered pneumonia detection from chest X-rays using a MERN stack web application.",
     live: "https://pneumonia-web-mern.vercel.app/",
     github: "https://github.com/your-username/pneumofusion",
-    images: ["ppic1.png", "ppic2.png", "ppic3.png"],
+    image: "ppic1.png",
     mobileImage: "mppic.jpeg",
     accent: "from-[#7DF9FF]/25 to-[#B57BFF]/10",
   },
@@ -18,7 +18,7 @@ const projects = [
     description: "Multi-tenant SaaS chatbot platform — users embed an AI widget trained on their own crawled website content.",
     live: "",
     github: "https://github.com/m7-code/Botforge.git",
-    images: ["bpic1.png", "bpic2.png", "bpic3.png"],
+    image: "bpic1.png",
     mobileImage: "mbpic.png",
     accent: "from-[#B57BFF]/25 to-[#7DF9FF]/10",
   },
@@ -28,7 +28,7 @@ const projects = [
     description: "Ai agents build with n8n.",
     live: "",
     github: "https://github.com/m7-code/Ai-Agents.git",
-    images: ["apic1.png", "apic2.png", "apic3.png"],
+    image: "AI Agents.jpg",
     mobileImage: "mapic.png",
     accent: "from-[#7DF9FF]/20 to-[#B57BFF]/20",
   },
@@ -153,7 +153,7 @@ function ProjectCard({ project, index }) {
         </motion.div>
       </div>
 
-      {/*  DESKTOP: cascading peek stack, centered, fixed height */}
+      {/*  DESKTOP: cascading peek stack, centered, fixed height, single image  */}
       <div
         className="hidden md:flex sticky w-full justify-center"
         style={{ top: `${topOffset}px`, zIndex: index + 1, paddingLeft: "24px", paddingRight: "24px" }}
@@ -178,14 +178,11 @@ function ProjectCard({ project, index }) {
 
           <ProjectHeader project={project} href={href} label={label} />
 
-          <div
+          <ImageTile
+            src={project.image}
+            accent={project.accent}
             className="relative flex-1 min-h-0"
-            style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr", gridTemplateRows: "1fr 1fr", gap: "16px" }}
-          >
-            <ImageTile src={project.images[0]} accent={project.accent} style={{ gridRow: "1 / span 2" }} />
-            <ImageTile src={project.images[1]} accent={project.accent} />
-            <ImageTile src={project.images[2]} accent={project.accent} />
-          </div>
+          />
         </motion.div>
       </div>
     </>
