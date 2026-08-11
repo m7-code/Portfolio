@@ -1,70 +1,184 @@
-import TornSection from "./TornSection";
-import { tornMaskStyle } from "../tornMask";
+import { motion } from "framer-motion";
 
-const markerFont = { fontFamily: "'Permanent Marker', cursive" };
-
-const contacts = [
-  {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/muhammad-mughira-asad-85251a32a/",
-    external: true,
-    icon: (
-      <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.44-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.8 0 0 .78 0 1.75v20.5C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.75V1.75C24 .78 23.2 0 22.22 0Z" />
-    ),
-  },
-  {
-    label: "Email",
-    href: "mailto:mughiraasad6@gmail.com",
-    external: false,
-    icon: (
-      <>
-        <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
-        <path d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
-      </>
-    ),
-  },
-  {
-    label: "WhatsApp",
-    href: "https://wa.me/923184533738",
-    external: true,
-    icon: (
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.15-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347ZM12.05 0C5.495 0 0 5.495 0 12.05c0 2.13.555 4.135 1.531 5.868L0 24l6.256-1.647A11.986 11.986 0 0 0 12.05 24C18.605 24 24 18.605 24 12.05 24 5.495 18.605 0 12.05 0Zm0 21.976a9.816 9.816 0 0 1-5.34-1.578l-.383-.227-3.972 1.043 1.063-3.869-.25-.394A9.775 9.775 0 0 1 2.126 12.05C2.126 6.65 6.65 2.126 12.05 2.126S21.976 6.65 21.976 12.05 17.45 21.976 12.05 21.976Z" />
-    ),
-  },
-];
-
-function ContactButton({ label, href, external, icon }) {
+function MailIcon() {
   return (
-    <a
-      href={href}
-      target={external ? "_blank" : undefined}
-      rel={external ? "noopener noreferrer" : undefined}
-      className="relative block h-14 w-full max-w-xs sm:h-16"
-    >
-      <span className="absolute inset-0 bg-black" style={tornMaskStyle} />
-      <span className="relative z-10 flex h-full items-center justify-center gap-3 px-6 text-sm font-semibold uppercase tracking-wide text-white sm:text-base">
-        <svg viewBox="0 0 24 24" fill="white" className="h-5 w-5 shrink-0 sm:h-6 sm:w-6">
-          {icon}
-        </svg>
-        {label}
-      </span>
-    </a>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="4" width="20" height="16" rx="3" />
+      <path d="m2 7 8.4 6a3 3 0 0 0 3.2 0L22 7" />
+    </svg>
   );
 }
 
-export default function Contact() {
+function WhatsAppIcon() {
   return (
-    <TornSection id="contact" title="Contact">
-      <p className="mb-8 text-center text-sm leading-relaxed sm:text-base" style={markerFont}>
-        Got a project in mind, or just want to say hi? Reach out — I usually
-        reply fast.
-      </p>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.6 6.32A8.86 8.86 0 0 0 12.02 3.5c-4.89 0-8.87 3.97-8.87 8.86 0 1.56.41 3.08 1.19 4.42L3.5 20.5l3.83-1.01a8.86 8.86 0 0 0 4.68 1.33h.01c4.89 0 8.87-3.97 8.87-8.86a8.8 8.8 0 0 0-2.6-6.27zm-5.58 13.6h-.01a7.35 7.35 0 0 1-3.76-1.03l-.27-.16-2.8.74.75-2.73-.18-.28a7.35 7.35 0 0 1-1.13-3.9c0-4.06 3.31-7.37 7.38-7.37a7.34 7.34 0 0 1 5.22 2.16 7.32 7.32 0 0 1 2.16 5.21c0 4.06-3.31 7.36-7.36 7.36zm4.04-5.52c-.22-.11-1.31-.65-1.51-.72-.2-.07-.35-.11-.5.11s-.58.72-.71.87-.26.16-.48.05a6.03 6.03 0 0 1-1.78-1.1 6.68 6.68 0 0 1-1.23-1.53c-.13-.22 0-.34.1-.45.1-.1.22-.26.33-.39.11-.13.15-.22.22-.37.07-.15.04-.28-.02-.39-.07-.11-.5-1.2-.68-1.65-.18-.43-.36-.37-.5-.38h-.43c-.15 0-.39.06-.59.28-.2.22-.77.75-.77 1.84 0 1.08.79 2.13.9 2.28.11.15 1.55 2.36 3.75 3.31.52.23.93.36 1.25.46.53.17 1 .14 1.38.09.42-.06 1.31-.53 1.5-1.05.18-.51.18-.95.13-1.05-.06-.09-.2-.15-.42-.26z" />
+    </svg>
+  );
+}
 
-      <div className="flex flex-col items-center gap-5">
-        {contacts.map((c) => (
-          <ContactButton key={c.label} {...c} />
-        ))}
+function LinkedinIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6Z" />
+      <rect x="2" y="9" width="4" height="12" />
+      <circle cx="4" cy="4" r="2" />
+    </svg>
+  );
+}
+
+const contacts = [
+  {
+    label: "Email",
+    value: "mughiraasad6@gmail.com",
+    href: "mailto:mughiraasad6@gmail.com",
+    Icon: MailIcon,
+  },
+  {
+    label: "WhatsApp",
+    value: "0318 4533738",
+    href: "https://wa.me/923184533738",
+    Icon: WhatsAppIcon,
+  },
+  {
+    label: "LinkedIn",
+    value: "muhammad-mughira-asad",
+    href: "https://www.linkedin.com/in/muhammad-mughira-asad-85251a32a",
+    Icon: LinkedinIcon,
+  },
+];
+
+export function Contact() {
+  return (
+    <section
+      id="contact"
+      className="snap-start bg-[#0A0A0A] text-white"
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        paddingLeft: "6vw",
+        paddingRight: "6vw",
+        paddingTop: "80px",
+        paddingBottom: "80px",
+        textAlign: "center",
+      }}
+    >
+      <div style={{ width: "100%", maxWidth: "700px" }}>
+        <motion.span
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600 }}
+          className="block text-white/40 text-xs tracking-[0.2em] uppercase mb-4"
+        >
+          Get in touch
+        </motion.span>
+
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          style={{
+            fontFamily: "'Syne', sans-serif",
+            fontWeight: 800,
+            fontSize: "clamp(2.2rem, 6vw, 4.5rem)",
+            lineHeight: 0.95,
+            marginBottom: "48px",
+          }}
+        >
+          Let's build
+          <br />
+          something{" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7DF9FF] to-[#B57BFF]">
+            great
+          </span>
+          .
+        </motion.h2>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+          {contacts.map((c, i) => (
+            <motion.a
+              key={c.label}
+              href={c.href}
+              target={c.label === "LinkedIn" || c.label === "WhatsApp" ? "_blank" : undefined}
+              rel={c.label === "LinkedIn" || c.label === "WhatsApp" ? "noopener noreferrer" : undefined}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              whileHover={{ scale: 1.02 }}
+              className="border border-white/12 bg-white/[0.03] hover:bg-white/[0.06] hover:border-[#7DF9FF]/40 backdrop-blur-sm rounded-2xl transition-colors duration-300"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "18px",
+                padding: "20px 24px",
+                textDecoration: "none",
+                color: "white",
+              }}
+            >
+              <span
+                className="text-[#7DF9FF]"
+                style={{
+                  width: "44px",
+                  height: "44px",
+                  borderRadius: "12px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  background: "linear-gradient(135deg, rgba(125,249,255,0.15), rgba(181,123,255,0.15))",
+                  border: "1px solid rgba(125,249,255,0.2)",
+                  flexShrink: 0,
+                }}
+              >
+                <c.Icon />
+              </span>
+              <div style={{ textAlign: "left" }}>
+                <p
+                  style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600 }}
+                  className="text-white/40 text-xs uppercase tracking-[0.15em]"
+                >
+                  {c.label}
+                </p>
+                <p
+                  style={{ fontFamily: "'Space Grotesk', sans-serif", marginTop: "4px" }}
+                  className="text-white text-base md:text-lg"
+                >
+                  {c.value}
+                </p>
+              </div>
+            </motion.a>
+          ))}
+        </div>
+
+        <motion.a
+          href="mailto:mughiraasad6@gmail.com"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          style={{
+            fontFamily: "'Space Grotesk', sans-serif",
+            display: "inline-flex",
+            marginTop: "40px",
+            padding: "16px 40px",
+            fontSize: "16px",
+            fontWeight: 700,
+            color: "#0A0A0A",
+            textDecoration: "none",
+          }}
+          className="rounded-full bg-gradient-to-r from-[#7DF9FF] to-[#B57BFF] shadow-[0_0_30px_rgba(125,249,255,0.25)]"
+        >
+          Say Hello
+        </motion.a>
       </div>
-    </TornSection>
+    </section>
   );
 }
