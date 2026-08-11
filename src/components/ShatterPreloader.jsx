@@ -26,7 +26,7 @@ const ROWS_M7 = 7;
 
 const ASSEMBLE_DURATION = 1.6;
 const MAX_STAGGER = 0.9;
-const HOLD_MS = 3000; // generous hold so you have time to screenshot the assembled state
+const HOLD_MS = 1000; 
 const FADE_MS = 550;
 
 function randBetween(min, max) {

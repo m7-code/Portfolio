@@ -1,1 +1,8 @@
 @import "tailwindcss";
+
+/* * {
+  cursor: url('/cursor.svg') 2 2, auto;
+}
+a, button, [role="button"] {
+  cursor: url('/cursor.svg') 2 2, pointer;
+} */
