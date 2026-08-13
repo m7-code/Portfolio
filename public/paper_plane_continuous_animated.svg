@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="1536" height="1024" viewBox="0 0 1536 1024"
+     fill="none">
+
+  <title>Continuously Animated Paper Plane Flight Path</title>
+  <desc>
+    Pure SVG vector animation. The dashed path flows continuously, three warm beige
+    dots travel continuously along the route, and the paper airplane continuously
+    travels from the beginning of the route to the end and loops forever.
+  </desc>
+
+  <defs>
+    <!-- Clean, corrected route matching the supplied reference composition. -->
+    <path id="flightPath"
+      d="M 171 685
+         C 215 628 277 602 335 618
+         C 394 634 431 684 488 695
+         C 539 706 586 697 626 683
+         C 666 668 704 646 727 610
+         C 756 564 747 504 712 482
+         C 677 459 630 462 596 486
+         C 560 512 552 560 566 600
+         C 577 632 602 666 627 682
+         C 685 704 760 698 826 671
+         C 902 640 944 591 988 536
+         C 1030 484 1077 432 1140 399
+         C 1195 369 1251 330 1318 249"/>
+
+    <!-- Plane is drawn around its local origin so animateMotion can move it. -->
+    <g id="plane">
+      <path d="M -126 -31 L 126 -80 L 12 93 L -40 26 L -126 -31 Z"
+            fill="#ddd0b1" stroke="#1f1f1d" stroke-width="7"
+            stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M -40 26 L 12 93 L 126 -80 L -40 26 Z"
+            fill="#ddd0b1" stroke="#1f1f1d" stroke-width="7"
+            stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M -126 -31 L -40 26 L 126 -80"
+            fill="none" stroke="#1f1f1d" stroke-width="7"
+            stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M -40 26 L -51 87 L 12 93"
+            fill="none" stroke="#1f1f1d" stroke-width="7"
+            stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M -2 -2 L 49 -39"
+            fill="none" stroke="#1f1f1d" stroke-width="5"
+            stroke-linecap="round"/>
+      <path d="M 9 11 L 60 -28"
+            fill="none" stroke="#1f1f1d" stroke-width="4"
+            stroke-linecap="round"/>
+      <path d="M -25 40 L -36 68"
+            fill="none" stroke="#1f1f1d" stroke-width="4"
+            stroke-linecap="round"/>
+    </g>
+
+    <style>
+      .ink {
+        stroke: #1f1f1d;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      /* The dash pattern itself moves continuously. */
+      .dash-flow {
+        stroke-dasharray: 20 20;
+        animation: dashFlow 1.15s linear infinite;
+      }
+
+      @keyframes dashFlow {
+        to { stroke-dashoffset: -80; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .dash-flow { animation: none; }
+      }
+    </style>
+  </defs>
+
+  <!-- Continuous moving dashed route. -->
+  <use xlink:href="#flightPath"
+        class="ink"
+        fill="none"
+        stroke-width="7"
+        stroke-dasharray="20 20"
+        stroke="#1f1f1d"
+        opacity="0.98"/>
+
+  <use xlink:href="#flightPath"
+        class="ink dash-flow"
+        fill="none"
+        stroke-width="6"
+        stroke="#1f1f1d"
+        opacity="0.98"/>
+
+  <!-- Warm beige dots continuously traveling along exactly the same path. -->
+  <g>
+    <circle r="7.5" fill="#ddd0b1" stroke="rgba(0,0,0,0.10)" stroke-width="3">
+      <animateMotion dur="4.8s" repeatCount="indefinite" rotate="auto">
+        <mpath xlink:href="#flightPath"/>
+      </animateMotion>
+    </circle>
+
+    <circle r="6.5" fill="#ddd0b1" stroke="rgba(0,0,0,0.10)" stroke-width="3">
+      <animateMotion dur="4.8s" begin="-1.6s" repeatCount="indefinite" rotate="auto">
+        <mpath xlink:href="#flightPath"/>
+      </animateMotion>
+    </circle>
+
+    <circle r="5.5" fill="#ddd0b1" stroke="rgba(0,0,0,0.10)" stroke-width="3">
+      <animateMotion dur="4.8s" begin="-3.2s" repeatCount="indefinite" rotate="auto">
+        <mpath xlink:href="#flightPath"/>
+      </animateMotion>
+    </circle>
+  </g>
+
+  <!-- Paper airplane continuously moves from route start -> route end -> start. -->
+  <g>
+    <use xlink:href="#plane">
+      <animateMotion
+        dur="8.5s"
+        begin="0s"
+        repeatCount="indefinite"
+        rotate="auto"
+        calcMode="linear">
+        <mpath xlink:href="#flightPath"/>
+      </animateMotion>
+    </use>
+  </g>
+
+  <!-- Hand-drawn speed marks that stay near the plane's destination area. -->
+  <g class="ink" stroke-width="6.5">
+    <path d="M 1047 362 L 1060 356"/>
+    <path d="M 1055 391 L 1070 382"/>
+    <path d="M 1026 436 L 1043 425"/>
+  </g>
+</svg>

@@ -1,184 +1,335 @@
-import { motion } from "framer-motion";
+// Contact.jsx
+// React + Tailwind — "Contact Me" section.
+// Matches the exact cream paper / black ink / typewriter aesthetic of About.jsx.
 
-function MailIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="2" y="4" width="20" height="16" rx="3" />
-      <path d="m2 7 8.4 6a3 3 0 0 0 3.2 0L22 7" />
-    </svg>
-  );
-}
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-function WhatsAppIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M17.6 6.32A8.86 8.86 0 0 0 12.02 3.5c-4.89 0-8.87 3.97-8.87 8.86 0 1.56.41 3.08 1.19 4.42L3.5 20.5l3.83-1.01a8.86 8.86 0 0 0 4.68 1.33h.01c4.89 0 8.87-3.97 8.87-8.86a8.8 8.8 0 0 0-2.6-6.27zm-5.58 13.6h-.01a7.35 7.35 0 0 1-3.76-1.03l-.27-.16-2.8.74.75-2.73-.18-.28a7.35 7.35 0 0 1-1.13-3.9c0-4.06 3.31-7.37 7.38-7.37a7.34 7.34 0 0 1 5.22 2.16 7.32 7.32 0 0 1 2.16 5.21c0 4.06-3.31 7.36-7.36 7.36zm4.04-5.52c-.22-.11-1.31-.65-1.51-.72-.2-.07-.35-.11-.5.11s-.58.72-.71.87-.26.16-.48.05a6.03 6.03 0 0 1-1.78-1.1 6.68 6.68 0 0 1-1.23-1.53c-.13-.22 0-.34.1-.45.1-.1.22-.26.33-.39.11-.13.15-.22.22-.37.07-.15.04-.28-.02-.39-.07-.11-.5-1.2-.68-1.65-.18-.43-.36-.37-.5-.38h-.43c-.15 0-.39.06-.59.28-.2.22-.77.75-.77 1.84 0 1.08.79 2.13.9 2.28.11.15 1.55 2.36 3.75 3.31.52.23.93.36 1.25.46.53.17 1 .14 1.38.09.42-.06 1.31-.53 1.5-1.05.18-.51.18-.95.13-1.05-.06-.09-.2-.15-.42-.26z" />
-    </svg>
-  );
-}
+const navItems = [
+  { label: "Home", to: "/" },
+  { label: "About", to: "/about" },
+  { label: "Services", to: "/services" },
+  { label: "Projects", to: "/projects" },
+  { label: "Skills", to: "/skills" },
+  { label: "Contact", to: "/contact" },
+];
 
-function LinkedinIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6Z" />
-      <rect x="2" y="9" width="4" height="12" />
-      <circle cx="4" cy="4" r="2" />
-    </svg>
-  );
-}
-
-const contacts = [
+const contactDetails = [
   {
     label: "Email",
     value: "mughiraasad6@gmail.com",
     href: "mailto:mughiraasad6@gmail.com",
-    Icon: MailIcon,
+    iconPath:
+      "M2.5 5.5h19v13h-19v-13zm1.7 1.3L12 12l7.8-5.2H4.2z",
   },
   {
     label: "WhatsApp",
-    value: "0318 4533738",
+    value: "+92 318 4533738",
     href: "https://wa.me/923184533738",
-    Icon: WhatsAppIcon,
+    iconPath:
+      "M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18a7.9 7.9 0 0 1-4.03-1.1l-.29-.17-2.99.78.8-2.92-.19-.3A7.93 7.93 0 1 1 12 20zm4.36-5.94c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.46-.39-.4-.54-.4h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z",
   },
   {
     label: "LinkedIn",
-    value: "muhammad-mughira-asad",
-    href: "https://www.linkedin.com/in/muhammad-mughira-asad-85251a32a",
-    Icon: LinkedinIcon,
+    value: "Muhammad Mughira Asad",
+    href: "https://www.linkedin.com/in/muhammad-mughira-asad-85251a32a/",
+    iconPath:
+      "M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z",
+  },
+  {
+    label: "GitHub",
+    value: "m7-code",
+    href: "https://github.com/m7-code",
+    iconPath:
+      "M12 .5C5.73.5.98 5.24.98 11.52c0 5.02 3.26 9.28 7.78 10.78.57.1.78-.25.78-.55v-2.15c-3.16.69-3.83-1.36-3.83-1.36-.52-1.31-1.26-1.66-1.26-1.66-1.03-.7.08-.69.08-.69 1.14.08 1.74 1.17 1.74 1.17 1.01 1.73 2.65 1.23 3.3.94.1-.73.4-1.23.72-1.51-2.52-.29-5.17-1.26-5.17-5.62 0-1.24.44-2.26 1.17-3.05-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.15 1.16a10.9 10.9 0 0 1 5.74 0c2.18-1.47 3.14-1.16 3.14-1.16.62 1.57.23 2.73.11 3.02.73.79 1.17 1.81 1.17 3.05 0 4.37-2.66 5.32-5.19 5.6.41.36.77 1.06.77 2.14v3.17c0 .3.2.66.79.55A11.03 11.03 0 0 0 23.02 11.5C23.02 5.24 18.27.5 12 .5z",
   },
 ];
 
-export function Contact() {
+export default function Contact() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Here you can integrate EmailJS, Formspree, or backend endpoint
+    setSubmitted(true);
+    setTimeout(() => {
+      setSubmitted(false);
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    }, 4000);
+  };
+
   return (
-    <section
-      id="contact"
-      className="snap-start bg-[#0A0A0A] text-white"
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        paddingLeft: "6vw",
-        paddingRight: "6vw",
-        paddingTop: "80px",
-        paddingBottom: "80px",
-        textAlign: "center",
-      }}
-    >
-      <div style={{ width: "100%", maxWidth: "700px" }}>
-        <motion.span
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600 }}
-          className="block text-white/40 text-xs tracking-[0.2em] uppercase mb-4"
-        >
-          Get in touch
-        </motion.span>
+    <section className="w-full min-h-screen bg-[#eee6d3] text-[#181410] flex flex-col justify-between">
+      {/* ================= TOP NAV — same as Home & About page ================= */}
+      <header className="w-full px-4 sm:px-8 md:px-20 pt-4 md:pt-6 pb-2 relative z-30">
+        <div className="flex items-center justify-between">
+          {/* LOGO + NAME (M7) */}
+          <Link
+            to="/"
+            className="flex items-center gap-2 shrink-0"
+            onClick={() => setMenuOpen(false)}
+          >
+            <img
+              src="/icon.png"
+              alt="Logo"
+              className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 object-contain rounded-sm"
+            />
+            <span className="font-['Permanent_Marker'] text-lg sm:text-xl md:text-2xl leading-none">
+              M7
+            </span>
+          </Link>
 
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          style={{
-            fontFamily: "'Syne', sans-serif",
-            fontWeight: 800,
-            fontSize: "clamp(2.2rem, 6vw, 4.5rem)",
-            lineHeight: 0.95,
-            marginBottom: "48px",
-          }}
-        >
-          Let's build
-          <br />
-          something{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7DF9FF] to-[#B57BFF]">
-            great
-          </span>
-          .
-        </motion.h2>
-
-        <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-          {contacts.map((c, i) => (
-            <motion.a
-              key={c.label}
-              href={c.href}
-              target={c.label === "LinkedIn" || c.label === "WhatsApp" ? "_blank" : undefined}
-              rel={c.label === "LinkedIn" || c.label === "WhatsApp" ? "noopener noreferrer" : undefined}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              whileHover={{ scale: 1.02 }}
-              className="border border-white/12 bg-white/[0.03] hover:bg-white/[0.06] hover:border-[#7DF9FF]/40 backdrop-blur-sm rounded-2xl transition-colors duration-300"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "18px",
-                padding: "20px 24px",
-                textDecoration: "none",
-                color: "white",
-              }}
-            >
-              <span
-                className="text-[#7DF9FF]"
-                style={{
-                  width: "44px",
-                  height: "44px",
-                  borderRadius: "12px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  background: "linear-gradient(135deg, rgba(125,249,255,0.15), rgba(181,123,255,0.15))",
-                  border: "1px solid rgba(125,249,255,0.2)",
-                  flexShrink: 0,
-                }}
+          {/* DESKTOP NAV LINKS */}
+          <nav className="hidden sm:flex items-center gap-x-6 md:gap-x-8 font-['Space_Mono'] text-xs sm:text-sm tracking-wide">
+            {navItems.map((item) => (
+              <Link
+                key={item.label}
+                to={item.to}
+                className="hover:opacity-60 transition-opacity"
               >
-                <c.Icon />
-              </span>
-              <div style={{ textAlign: "left" }}>
-                <p
-                  style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600 }}
-                  className="text-white/40 text-xs uppercase tracking-[0.15em]"
-                >
-                  {c.label}
-                </p>
-                <p
-                  style={{ fontFamily: "'Space Grotesk', sans-serif", marginTop: "4px" }}
-                  className="text-white text-base md:text-lg"
-                >
-                  {c.value}
-                </p>
-              </div>
-            </motion.a>
-          ))}
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* MOBILE HAMBURGER BUTTON */}
+          <button
+            type="button"
+            onClick={() => setMenuOpen((prev) => !prev)}
+            aria-label="Toggle menu"
+            aria-expanded={menuOpen}
+            className="sm:hidden flex flex-col justify-center items-center gap-[5px] w-9 h-9 shrink-0"
+          >
+            <span
+              className={`block w-6 h-[2px] bg-[#181410] transition-transform duration-300 ${
+                menuOpen ? "rotate-45 translate-y-[7px]" : ""
+              }`}
+            />
+            <span
+              className={`block w-6 h-[2px] bg-[#181410] transition-opacity duration-300 ${
+                menuOpen ? "opacity-0" : "opacity-100"
+              }`}
+            />
+            <span
+              className={`block w-6 h-[2px] bg-[#181410] transition-transform duration-300 ${
+                menuOpen ? "-rotate-45 -translate-y-[7px]" : ""
+              }`}
+            />
+          </button>
         </div>
 
-        <motion.a
-          href="mailto:mughiraasad6@gmail.com"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          style={{
-            fontFamily: "'Space Grotesk', sans-serif",
-            display: "inline-flex",
-            marginTop: "40px",
-            padding: "16px 40px",
-            fontSize: "16px",
-            fontWeight: 700,
-            color: "#0A0A0A",
-            textDecoration: "none",
-          }}
-          className="rounded-full bg-gradient-to-r from-[#7DF9FF] to-[#B57BFF] shadow-[0_0_30px_rgba(125,249,255,0.25)]"
+        {/* MOBILE DROPDOWN MENU */}
+        <div
+          className={`sm:hidden overflow-hidden transition-all duration-300 ${
+            menuOpen ? "max-h-80 opacity-100 mt-3" : "max-h-0 opacity-0"
+          }`}
         >
-          Say Hello
-        </motion.a>
+          <nav className="flex flex-col items-center gap-1 bg-[#e4d9bf] border border-black/10 rounded-md py-3 font-['Space_Mono'] text-sm tracking-wide shadow-[2px_3px_0_rgba(0,0,0,0.08)]">
+            {navItems.map((item) => (
+              <Link
+                key={item.label}
+                to={item.to}
+                onClick={() => setMenuOpen(false)}
+                className="w-full text-center py-2 hover:opacity-60 hover:bg-black/5 transition-all"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+      </header>
+
+      {/* ================= MAIN CONTENT ================= */}
+      <div className="px-4 sm:px-8 md:px-20 py-10 md:py-14 grow">
+        {/* BACK BUTTON */}
+        <button
+          type="button"
+          onClick={() => navigate(-1)}
+          className="inline-flex items-center gap-1.5 -rotate-1 hover:rotate-0 bg-[#151210] text-[#eee6d3] px-4 py-2 shadow-[2px_3px_0_rgba(0,0,0,0.2)] hover:-translate-y-0.5 active:scale-95 transition-all font-['Space_Mono'] text-xs sm:text-sm tracking-wide font-bold mb-6 md:mb-8"
+        >
+          ← Back
+        </button>
+
+        {/* PAGE HEADING */}
+        <div className="mb-10 md:mb-14">
+          <h2 className="font-['Permanent_Marker'] text-[36px] md:text-[52px] leading-none">
+            GET IN TOUCH
+          </h2>
+          <span className="block w-14 md:w-16 h-[5px] bg-[#181410] mt-3 -rotate-1" />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14 items-start">
+          {/* LEFT COLUMN: CONTACT DETAILS CARDS */}
+          <div className="md:col-span-5 flex flex-col gap-6">
+            <p className="font-['Space_Mono'] text-[14px] md:text-[16px] leading-relaxed text-[#4a4136]">
+              Have a project in mind, need an AI workflow automated, or just want to connect?
+              Feel free to drop me a message or reach out through any of these platforms!
+            </p>
+
+            <div className="flex flex-col gap-3.5 mt-2">
+              {contactDetails.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group flex items-center justify-between p-4 bg-[#f6f0e2] border border-black/15 rounded-xl shadow-[3px_4px_0_rgba(0,0,0,0.06)] hover:shadow-[4px_5px_0_rgba(0,0,0,0.15)] hover:-translate-y-0.5 transition-all"
+                >
+                  <div className="flex items-center gap-3.5 overflow-hidden">
+                    <div className="w-9 h-9 shrink-0 rounded-full bg-[#181410] text-[#eee6d3] flex items-center justify-center group-hover:scale-105 transition-transform">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d={item.iconPath} />
+                      </svg>
+                    </div>
+                    <div className="flex flex-col overflow-hidden">
+                      <span className="font-['Space_Mono'] text-xs text-[#8a7f6a] font-bold uppercase tracking-wider">
+                        {item.label}
+                      </span>
+                      <span className="font-['Space_Mono'] text-sm text-[#181410] truncate">
+                        {item.value}
+                      </span>
+                    </div>
+                  </div>
+                  <span className="font-['Space_Mono'] text-sm text-[#8a7f6a] group-hover:translate-x-1 transition-transform ml-2 shrink-0">
+                    →
+                  </span>
+                </a>
+              ))}
+            </div>
+
+            {/* HANDWRITTEN NOTE */}
+            <div className="mt-4 p-4 bg-[#e4d9bf] border border-black/10 rounded-xl relative -rotate-1">
+              <span
+                className="font-['Caveat'] text-[24px] md:text-[28px] text-[#181410] leading-snug block"
+                style={{ fontFamily: "'Caveat', cursive" }}
+              >
+                "Looking forward to building something awesome together!"
+              </span>
+              <span className="block text-right font-['Space_Mono'] text-xs text-[#6e6351] mt-1">
+                — Mughira
+              </span>
+            </div>
+          </div>
+
+          {/* RIGHT COLUMN: CONTACT FORM */}
+          <div className="md:col-span-7 bg-[#f6f0e2] border border-black/15 rounded-2xl shadow-[5px_6px_0_rgba(0,0,0,0.08)] p-6 sm:p-8 md:p-10">
+            <h3 className="font-['Permanent_Marker'] text-2xl text-[#181410] mb-6">
+              SEND A MESSAGE
+            </h3>
+
+            {submitted ? (
+              <div className="bg-[#e4d9bf] border border-black/20 p-6 rounded-xl text-center font-['Space_Mono'] text-sm text-[#181410] animate-fade-in">
+                <span className="text-2xl block mb-2">✉️</span>
+                <p className="font-bold text-base mb-1">Message Sent!</p>
+                <p className="text-[#5a5043]">
+                  Thanks for reaching out, Mughira will get back to you shortly.
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {/* NAME INPUT */}
+                  <div className="flex flex-col gap-1.5">
+                    <label className="font-['Space_Mono'] text-xs font-bold text-[#6e6351] uppercase tracking-wider">
+                      Your Name
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="your name"
+                      className="w-full bg-[#eee6d3] border border-black/15 rounded-lg px-3.5 py-2.5 font-['Space_Mono'] text-sm text-[#181410] outline-none focus:border-black/50 focus:ring-1 focus:ring-black/20 transition-all placeholder:text-black/30"
+                    />
+                  </div>
+
+                  {/* EMAIL INPUT */}
+                  <div className="flex flex-col gap-1.5">
+                    <label className="font-['Space_Mono'] text-xs font-bold text-[#6e6351] uppercase tracking-wider">
+                      Your Email
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="abc@example.com"
+                      className="w-full bg-[#eee6d3] border border-black/15 rounded-lg px-3.5 py-2.5 font-['Space_Mono'] text-sm text-[#181410] outline-none focus:border-black/50 focus:ring-1 focus:ring-black/20 transition-all placeholder:text-black/30"
+                    />
+                  </div>
+                </div>
+
+                {/* SUBJECT INPUT */}
+                <div className="flex flex-col gap-1.5">
+                  <label className="font-['Space_Mono'] text-xs font-bold text-[#6e6351] uppercase tracking-wider">
+                    Subject
+                  </label>
+                  <input
+                    type="text"
+                    name="subject"
+                    required
+                    value={formData.subject}
+                    onChange={handleChange}
+                    placeholder="Project Inquiry / Hiring"
+                    className="w-full bg-[#eee6d3] border border-black/15 rounded-lg px-3.5 py-2.5 font-['Space_Mono'] text-sm text-[#181410] outline-none focus:border-black/50 focus:ring-1 focus:ring-black/20 transition-all placeholder:text-black/30"
+                  />
+                </div>
+
+                {/* MESSAGE TEXTAREA */}
+                <div className="flex flex-col gap-1.5">
+                  <label className="font-['Space_Mono'] text-xs font-bold text-[#6e6351] uppercase tracking-wider">
+                    Message
+                  </label>
+                  <textarea
+                    name="message"
+                    rows="5"
+                    required
+                    value={formData.message}
+                    onChange={handleChange}
+                    placeholder="Tell me about your project or idea..."
+                    className="w-full bg-[#eee6d3] border border-black/15 rounded-lg px-3.5 py-2.5 font-['Space_Mono'] text-sm text-[#181410] outline-none focus:border-black/50 focus:ring-1 focus:ring-black/20 transition-all placeholder:text-black/30 resize-none"
+                  />
+                </div>
+
+                {/* SUBMIT BUTTON */}
+                <button
+                  type="submit"
+                  className="mt-2 w-full sm:w-auto self-start bg-[#181410] text-[#eee6d3] font-['Space_Mono'] text-sm font-bold tracking-wide px-8 py-3.5 rounded-lg shadow-[3px_4px_0_rgba(0,0,0,0.2)] hover:-translate-y-0.5 active:scale-95 transition-all -rotate-1 hover:rotate-0 flex items-center justify-center gap-2"
+                >
+                  <span>Send Message</span>
+                  <span>→</span>
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
       </div>
+
+      {/* FOOTER ACCENT */}
+      <footer className="w-full text-center py-4 border-t border-black/10 font-['Space_Mono'] text-xs text-[#8a7f6a]">
+        © {new Date().getFullYear()} Muhammad Mughira Asad. All rights reserved.
+      </footer>
     </section>
   );
 }

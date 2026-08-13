@@ -1,0 +1,75 @@
+.preloader-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease;
+}
+
+.preloader-fade {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.paper-crumple {
+  position: relative;
+  width: 200px;
+  height: 280px;
+  background: #f5f3ee;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  animation: crumple 1.8s ease-in-out forwards;
+}
+
+/* Faint crease lines so it reads as "paper" before it balls up */
+.crease {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.1);
+}
+.crease-1 {
+  top: 22%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  transform: rotate(3deg);
+}
+.crease-2 {
+  top: 58%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  transform: rotate(-4deg);
+}
+.crease-3 {
+  top: 0;
+  left: 42%;
+  width: 2px;
+  height: 100%;
+  transform: rotate(6deg);
+}
+
+@keyframes crumple {
+  0% {
+    border-radius: 4px;
+    transform: scale(1) rotate(0deg);
+  }
+  30% {
+    border-radius: 30% 70% 60% 40% / 40% 30% 70% 60%;
+    transform: scale(0.85) rotate(-8deg);
+  }
+  55% {
+    border-radius: 60% 40% 30% 70% / 60% 70% 30% 40%;
+    transform: scale(0.55) rotate(15deg);
+  }
+  75% {
+    border-radius: 50% 50% 45% 55% / 55% 45% 55% 45%;
+    transform: scale(0.3) rotate(-20deg);
+  }
+  100% {
+    border-radius: 50%;
+    transform: scale(0.15) rotate(25deg);
+    opacity: 0.9;
+  }
+}

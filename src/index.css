@@ -1,54 +1,8 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800;900&family=Space+Grotesk:wght@400;500;600&display=swap');
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  cursor: url('/cursor.svg') 2 2, auto;
 }
-
-/* ONLY html owns scrolling — body/#root must NOT have their own overflow rules,
-   otherwise the browser creates two separate scroll contexts (double scrollbar bug). */
-html {
-  width: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  scroll-behavior: smooth;
-}
-
-body,
-#root {
-  width: 100%;
-}
-
-body {
-  background: #0A0A0A;
-  color: white;
-  font-family: 'Syne', sans-serif;
-}
-
-section {
-  width: 100%;
-  min-height: 100vh;
-}
-
-/* Scrollbar — thin and styled, but visible */
-::-webkit-scrollbar {
-  width: 5px;
-}
-::-webkit-scrollbar-track {
-  background: #0A0A0A;
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(125, 249, 255, 0.35);
-  border-radius: 999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #7DF9FF;
-}
-
-/* Selection */
-::selection {
-  background: #7DF9FF;
-  color: #0A0A0A;
+a, button, [role="button"] {
+  cursor: url('/cursor.svg') 2 2, pointer;
 }

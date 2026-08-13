@@ -1,168 +1,152 @@
-import { motion } from "framer-motion";
+// Skills.jsx
+// React + Tailwind — "Skills" section. Same header/heading style as About.jsx.
 
-function CodeIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <polyline points="16 18 22 12 16 6" />
-      <polyline points="8 6 2 12 8 18" />
-    </svg>
-  );
-}
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-function BrainIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
-      <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" />
-    </svg>
-  );
-}
+const navItems = [
+  { label: "Home", to: "/" },
+  { label: "About", to: "/about" },
+  { label: "Services", to: "/services" },
+  { label: "Projects", to: "/projects" },
+  { label: "Skills", to: "/skills" },
+  { label: "Contact", to: "/contact" },
+];
 
-function DatabaseIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <ellipse cx="12" cy="5" rx="9" ry="3" />
-      <path d="M3 5v14a9 3 0 0 0 18 0V5" />
-      <path d="M3 12a9 3 0 0 0 18 0" />
-    </svg>
-  );
-}
-
-function ToolsIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-    </svg>
-  );
-}
-
-const categories = [
+const skillGroups = [
   {
-    title: "Languages",
-    Icon: CodeIcon,
+    title: "🚀 Languages",
     icons: "html,css,js,python,php,cpp,c,cs,java,react,threejs",
     perline: 11,
   },
   {
-    title: "AI / ML & Frameworks",
-    Icon: BrainIcon,
+    title: "🧠 AI / ML & Frameworks",
     icons: "pytorch,sklearn,fastapi,flask,laravel,nodejs",
     perline: 7,
   },
   {
-    title: "Databases & Cloud",
-    Icon: DatabaseIcon,
+    title: "🗄️ Databases & Cloud",
     icons: "mysql,postgresql,mongodb,sqlite,aws,netlify,vercel",
     perline: 7,
   },
   {
-    title: "Tools & Others",
-    Icon: ToolsIcon,
+    title: "🛠️ Tools & Others",
     icons: "git,github,vscode,docker,postman,blender,npm,linux,wordpress",
     perline: 10,
   },
 ];
 
-export function Skills() {
-  return (
-    <section
-      id="skills"
-      className="snap-start bg-[#0A0A0A] text-white"
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        paddingLeft: "6vw",
-        paddingRight: "6vw",
-        paddingTop: "80px",
-        paddingBottom: "80px",
-      }}
-    >
-      <div style={{ width: "100%", maxWidth: "1100px", margin: "0 auto" }}>
-        <div style={{ textAlign: "center", marginBottom: "56px" }}>
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600 }}
-            className="block text-white/40 text-xs tracking-[0.2em] uppercase mb-4"
-          >
-            What I work with
-          </motion.span>
+export default function Skills() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            style={{
-              fontFamily: "'Syne', sans-serif",
-              fontWeight: 800,
-              fontSize: "clamp(2.2rem, 5.5vw, 4rem)",
-              lineHeight: 0.95,
-            }}
-          >
-            Skills &amp;{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7DF9FF] to-[#B57BFF]">
-              Tools
+  return (
+    <section className="w-full min-h-screen bg-[#eee6d3] text-[#181410]">
+      {/* ================= TOP NAV — same as About page ================= */}
+      <header className="w-full px-4 sm:px-8 md:px-20 pt-4 md:pt-6 pb-2 relative z-30">
+        <div className="flex items-center justify-between">
+          {/* LOGO + NAME (M7) — top-left corner, always visible */}
+          <Link to="/" className="flex items-center gap-2 shrink-0" onClick={() => setMenuOpen(false)}>
+            <img
+              src="/icon.png"
+              alt="Logo"
+              className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 object-contain rounded-sm"
+            />
+            <span className="font-['Permanent_Marker'] text-lg sm:text-xl md:text-2xl leading-none">
+              M7
             </span>
-          </motion.h2>
+          </Link>
+
+          {/* DESKTOP NAV LINKS */}
+          <nav className="hidden sm:flex items-center gap-x-6 md:gap-x-8 font-['Space_Mono'] text-xs sm:text-sm tracking-wide">
+            {navItems.map((item) => (
+              <Link key={item.label} to={item.to} className="hover:opacity-60 transition-opacity">
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* MOBILE HAMBURGER BUTTON */}
+          <button
+            type="button"
+            onClick={() => setMenuOpen((prev) => !prev)}
+            aria-label="Toggle menu"
+            aria-expanded={menuOpen}
+            className="sm:hidden flex flex-col justify-center items-center gap-[5px] w-9 h-9 shrink-0"
+          >
+            <span
+              className={`block w-6 h-[2px] bg-[#181410] transition-transform duration-300 ${
+                menuOpen ? "rotate-45 translate-y-[7px]" : ""
+              }`}
+            />
+            <span
+              className={`block w-6 h-[2px] bg-[#181410] transition-opacity duration-300 ${
+                menuOpen ? "opacity-0" : "opacity-100"
+              }`}
+            />
+            <span
+              className={`block w-6 h-[2px] bg-[#181410] transition-transform duration-300 ${
+                menuOpen ? "-rotate-45 -translate-y-[7px]" : ""
+              }`}
+            />
+          </button>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "28px" }}>
-          {categories.map((cat, i) => (
-            <motion.div
-              key={cat.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="border border-white/10 bg-white/[0.03] backdrop-blur-sm rounded-2xl"
-              style={{ padding: "28px" }}
-            >
-              <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "18px" }}>
-                <span
-                  className="text-[#7DF9FF]"
-                  style={{
-                    width: "36px",
-                    height: "36px",
-                    borderRadius: "10px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    background: "linear-gradient(135deg, rgba(125,249,255,0.15), rgba(181,123,255,0.15))",
-                    border: "1px solid rgba(125,249,255,0.2)",
-                    flexShrink: 0,
-                  }}
-                >
-                  <cat.Icon />
-                </span>
-                <h3
-                  style={{ fontFamily: "'Syne', sans-serif", fontWeight: 700 }}
-                  className="text-white text-lg md:text-xl"
-                >
-                  {cat.title}
-                </h3>
-              </div>
+        {/* MOBILE DROPDOWN MENU */}
+        <div
+          className={`sm:hidden overflow-hidden transition-all duration-300 ${
+            menuOpen ? "max-h-80 opacity-100 mt-3" : "max-h-0 opacity-0"
+          }`}
+        >
+          <nav className="flex flex-col items-center gap-1 bg-[#e4d9bf] border border-black/10 rounded-md py-3 font-['Space_Mono'] text-sm tracking-wide shadow-[2px_3px_0_rgba(0,0,0,0.08)]">
+            {navItems.map((item) => (
+              <Link
+                key={item.label}
+                to={item.to}
+                onClick={() => setMenuOpen(false)}
+                className="w-full text-center py-2 hover:opacity-60 hover:bg-black/5 transition-all"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+      </header>
 
-              <div style={{ display: "flex", alignItems: "center", gap: "14px", flexWrap: "wrap" }}>
-                <img
-                  src={`https://skillicons.dev/icons?i=${cat.icons}&theme=dark&perline=${cat.perline}`}
-                  alt={cat.title}
-                  style={{ maxWidth: "100%", height: "auto" }}
-                />
-                {cat.title === "Tools & Others" && (
-                  <img
-                    src="https://cdn.simpleicons.org/n8n/EA4B71"
-                    alt="n8n"
-                    title="n8n"
-                    style={{ width: "48px", height: "48px", padding: "8px", background: "#1a1a1a", borderRadius: "8px" }}
-                  />
-                )}
-              </div>
-            </motion.div>
+      <div className="px-4 sm:px-8 md:px-20 py-10 md:py-14">
+        {/* BACK BUTTON */}
+        <button
+          type="button"
+          onClick={() => navigate(-1)}
+          className="inline-flex items-center gap-1.5 -rotate-1 hover:rotate-0 bg-[#151210] text-[#eee6d3] px-4 py-2 shadow-[2px_3px_0_rgba(0,0,0,0.2)] hover:-translate-y-0.5 active:scale-95 transition-all font-['Space_Mono'] text-xs sm:text-sm tracking-wide font-bold mb-6 md:mb-8"
+        >
+          ← Back
+        </button>
+
+        {/* heading */}
+        <div className="mb-10 md:mb-14">
+          <h2 className="font-['Permanent_Marker'] text-[36px] md:text-[52px] leading-none">
+            SKILLS
+          </h2>
+          <span className="block w-14 md:w-16 h-[5px] bg-[#181410] mt-3 -rotate-1" />
+        </div>
+
+        {/* skill category cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {skillGroups.map((group) => (
+            <div
+              key={group.title}
+              className="bg-[#f6f0e2] border border-black/15 rounded-2xl shadow-[4px_5px_0_rgba(0,0,0,0.08)] p-6 md:p-7"
+            >
+              <h3 className="font-['Permanent_Marker'] text-[18px] md:text-[22px] leading-none mb-5">
+                {group.title}
+              </h3>
+              <img
+                src={`https://skillicons.dev/icons?i=${group.icons}&theme=dark&perline=${group.perline}`}
+                alt={group.title}
+                className="w-full h-auto"
+              />
+            </div>
           ))}
         </div>
       </div>

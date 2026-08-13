@@ -1,204 +1,187 @@
-import { motion } from "framer-motion";
+// Projects.jsx
+// React + Tailwind — "Projects" section, same visual language as Services.jsx / About.jsx / Home.jsx.
 
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+const navItems = [
+  { label: "Home", to: "/" },
+  { label: "About", to: "/about" },
+  { label: "Services", to: "/services" },
+  { label: "Projects", to: "/projects" },
+  { label: "Skills", to: "/skills" },
+  { label: "Contact", to: "/contact" },
+];
 
 const projects = [
   {
-    number: "01",
     title: "PneumoFusion",
-    description: "AI-powered pneumonia detection from chest X-rays using a MERN stack web application.",
-    live: "https://pneumonia-web-mern.vercel.app/",
-    github: "https://github.com/your-username/pneumofusion",
-    image: "ppic1.png",
-    mobileImage: "mppic.jpeg",
-    accent: "from-[#7DF9FF]/25 to-[#B57BFF]/10",
+    desc: "A web app that detects pneumonia from chest X-rays using a PyTorch model, built with the MERN stack.",
+    image: "project1.png",
+    link: "https://pneumonia-web-mern.vercel.app/",
   },
   {
-    number: "02",
-    title: "BotForge",
-    description: "Multi-tenant SaaS chatbot platform — users embed an AI widget trained on their own crawled website content.",
-    live: "",
-    github: "https://github.com/m7-code/Botforge.git",
-    image: "bpic1.png",
-    mobileImage: "mbpic.png",
-    accent: "from-[#B57BFF]/25 to-[#7DF9FF]/10",
+    title: "BotFOrge",
+    desc: "A no-code platform for building and deploying AI-powered chatbots.",
+    image: "project2.png",
+    link: "https://github.com/m7-code/Botforge",
   },
   {
-    number: "03",
-    title: "AI Agents",
-    description: "Ai agents build with n8n.",
-    live: "",
-    github: "https://github.com/m7-code/Ai-Agents.git",
-    image: "AI Agents.jpg",
-    mobileImage: "mapic.png",
-    accent: "from-[#7DF9FF]/20 to-[#B57BFF]/20",
+    title: "Ai Agents",
+    desc: "A collection of AI agents that automate tasks by connecting LLMs, APIs, and databases into working pipelines.",
+    image: "project3.png",
+    link: "https://github.com/m7-code/Ai-Agents",
+  },
+  {
+    title: "Ai Models",
+    desc: "A showcase of AI models trained and deployed with PyTorch, including image classification and NLP tasks.",
+    image: "project4.png",
+    link: "https://github.com/m7-code/AI_Models",
+  },
+  {
+    title: "Text to Image Generator",
+    desc: "A Text-to-Image Generator built using FastAPI and Stable Diffusion, designed to run entirely on a normal PC (CPU) without requiring a GPU.",
+    image: "project5.png",
+    link: "https://github.com/m7-code/Text-to-Image-Generator",
+  },
+  {
+    title: "Ai news generator",
+    desc: "Its take prompt voice and avtar and generate news with ai",
+    image: "project6.png",
+    link: "https://github.com/m7-code/Ai-news-generation-web",
   },
 ];
 
+export default function Projects() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
-// How far down each successive card's sticky point sits.
-// This is what creates the peek — earlier cards' top edges stay visible.
-const STEP = 100;
-const BASE_TOP = 70;
+  return (
+    <section className="w-full min-h-screen bg-[#eee6d3] text-[#181410]">
+      {/* ================= TOP NAV — same as Home/About/Services ================= */}
+      <header className="w-full px-4 sm:px-8 md:px-20 pt-4 md:pt-6 pb-2 relative z-30">
+        <div className="flex items-center justify-between">
+          {/* LOGO + NAME (M7) — top-left corner, always visible */}
+          <Link to="/" className="flex items-center gap-2 shrink-0" onClick={() => setMenuOpen(false)}>
+            <img
+              src="/icon.png"
+              alt="Logo"
+              className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 object-contain rounded-sm"
+            />
+            <span className="font-['Permanent_Marker'] text-lg sm:text-xl md:text-2xl leading-none">
+              M7
+            </span>
+          </Link>
 
-function ImageTile({ src, accent, style, className }) {
-  return (
-    <div
-      className={`relative overflow-hidden rounded-2xl bg-[#0d0d10] ${className || ""}`}
-      style={style}
-    >
-      {src ? (
-        <>
-          {/* blurred zoomed copy fills all empty space */}
-          <img
-            src={src}
-            alt=""
-            className="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 opacity-40"
-          />
-          {/* actual full image, uncropped, centered on top */}
-          <img
-            src={src}
-            alt=""
-            className="absolute inset-0 w-full h-full object-contain"
-          />
-        </>
-      ) : (
-        <div className={`absolute inset-0 bg-gradient-to-br ${accent} bg-[#111]`} />
-      )}
-    </div>
-  );
-}
-function ProjectHeader({ project, href, label }) {
-  return (
-    <div className="relative z-10 flex flex-wrap items-start justify-between gap-4">
-      <div className="flex items-center gap-4 md:gap-6 min-w-0 flex-1" style={{ flexBasis: "260px" }}>
-        <span
-          style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800 }}
-          className="text-transparent bg-clip-text bg-gradient-to-br from-[#7DF9FF] to-[#B57BFF] text-3xl md:text-5xl shrink-0"
+          {/* DESKTOP NAV LINKS */}
+          <nav className="hidden sm:flex items-center gap-x-6 md:gap-x-8 font-['Space_Mono'] text-xs sm:text-sm tracking-wide">
+            {navItems.map((item) => (
+              <Link key={item.label} to={item.to} className="hover:opacity-60 transition-opacity">
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* MOBILE HAMBURGER BUTTON */}
+          <button
+            type="button"
+            onClick={() => setMenuOpen((prev) => !prev)}
+            aria-label="Toggle menu"
+            aria-expanded={menuOpen}
+            className="sm:hidden flex flex-col justify-center items-center gap-[5px] w-9 h-9 shrink-0"
+          >
+            <span
+              className={`block w-6 h-[2px] bg-[#181410] transition-transform duration-300 ${
+                menuOpen ? "rotate-45 translate-y-[7px]" : ""
+              }`}
+            />
+            <span
+              className={`block w-6 h-[2px] bg-[#181410] transition-opacity duration-300 ${
+                menuOpen ? "opacity-0" : "opacity-100"
+              }`}
+            />
+            <span
+              className={`block w-6 h-[2px] bg-[#181410] transition-transform duration-300 ${
+                menuOpen ? "-rotate-45 -translate-y-[7px]" : ""
+              }`}
+            />
+          </button>
+        </div>
+
+        {/* MOBILE DROPDOWN MENU */}
+        <div
+          className={`sm:hidden overflow-hidden transition-all duration-300 ${
+            menuOpen ? "max-h-80 opacity-100 mt-3" : "max-h-0 opacity-0"
+          }`}
         >
-          {project.number}
-        </span>
-        <div className="min-w-0 flex-1">
-          <h3
-            style={{ fontFamily: "'Syne', sans-serif", fontWeight: 700 }}
-            className="text-white text-lg md:text-2xl truncate"
-          >
-            {project.title}
-          </h3>
-          <p
-            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-            className="text-white/45 text-xs md:text-sm mt-1 line-clamp-2"
-          >
-            {project.description}
-          </p>
+          <nav className="flex flex-col items-center gap-1 bg-[#e4d9bf] border border-black/10 rounded-md py-3 font-['Space_Mono'] text-sm tracking-wide shadow-[2px_3px_0_rgba(0,0,0,0.08)]">
+            {navItems.map((item) => (
+              <Link
+                key={item.label}
+                to={item.to}
+                onClick={() => setMenuOpen(false)}
+                className="w-full text-center py-2 hover:opacity-60 hover:bg-black/5 transition-all"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+      </header>
+
+      <div className="px-4 sm:px-8 md:px-20 py-10 md:py-14">
+        {/* BACK BUTTON */}
+        <button
+          type="button"
+          onClick={() => navigate(-1)}
+          className="inline-flex items-center gap-1.5 -rotate-1 hover:rotate-0 bg-[#151210] text-[#eee6d3] px-4 py-2 shadow-[2px_3px_0_rgba(0,0,0,0.2)] hover:-translate-y-0.5 active:scale-95 transition-all font-['Space_Mono'] text-xs sm:text-sm tracking-wide font-bold mb-6 md:mb-8"
+        >
+          ← Back
+        </button>
+
+        {/* heading */}
+        <div className="mb-10 md:mb-14">
+          <h2 className="font-['Permanent_Marker'] text-[36px] md:text-[52px] leading-none">
+            PROJECTS
+          </h2>
+          <span className="block w-14 md:w-16 h-[5px] bg-[#181410] mt-3 -rotate-1" />
+        </div>
+
+        {/* 6 cards, 3 per row on desktop, stacking down on smaller screens */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7 md:gap-8">
+          {projects.map((p) => (
+            <div
+              key={p.title}
+              className="bg-[#f6f0e2] border border-black/15 rounded-2xl shadow-[4px_5px_0_rgba(0,0,0,0.08)] p-6 md:p-7 flex flex-col hover:-translate-y-1 transition-transform"
+            >
+              {/* Image / thumbnail */}
+              <div className="w-full aspect-[4/3] rounded-xl border-2 border-dashed border-black/20 bg-[#eee6d3] overflow-hidden mb-6">
+                <img
+                  src={p.image}
+                  alt={p.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              <h3 className="font-['Permanent_Marker'] text-[20px] md:text-[22px] leading-snug mb-2.5">
+                {p.title}
+              </h3>
+              <p className="font-['Space_Mono'] text-[13px] md:text-[14px] leading-relaxed text-[#4a4136] mb-5 flex-1">
+                {p.desc}
+              </p>
+
+              <a
+                href={p.link}
+                target="_blank"
+                rel="noreferrer"
+                className="self-start inline-flex items-center gap-1.5 bg-[#181410] text-[#eee6d3] px-4 py-2 text-xs md:text-sm font-['Space_Mono'] font-bold tracking-wide -rotate-1 hover:rotate-0 hover:-translate-y-0.5 active:scale-95 transition-all"
+              >
+                → View Project
+              </a>
+            </div>
+          ))}
         </div>
       </div>
-
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{
-          fontFamily: "'Space Grotesk', sans-serif",
-          padding: "12px 26px",
-          fontSize: "14px",
-          fontWeight: 600,
-          boxShadow: "0 0 20px rgba(125,249,255,0.25)",
-        }}
-        className="shrink-0 inline-flex items-center gap-2 border border-[#7DF9FF]/40 hover:border-[#7DF9FF]
-                   rounded-full text-white/90 hover:text-white transition-all duration-300
-                   hover:shadow-[0_0_30px_rgba(125,249,255,0.5)]"
-      >
-        {label}
-      </a>
-    </div>
-  );
-}
-
-function ProjectCard({ project, index }) {
-  const href = project.live || project.github;
-  const label = project.live ? "Live Project" : "View on GitHub";
-  const topOffset = BASE_TOP + index * STEP;
-
-  return (
-    <>
-      {/*  MOBILE: cascading peek stack  */}
-      <div
-        className="md:hidden sticky w-full flex justify-center"
-        style={{ top: `${topOffset}px`, zIndex: index + 1, paddingLeft: "16px", paddingRight: "16px" }}
-      >
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
-          style={{
-            width: "100%",
-            height: "560px",
-            padding: "22px",
-            gap: "16px",
-            boxShadow: "0 -12px 30px rgba(0,0,0,0.55), 0 0 40px rgba(125,249,255,0.08)",
-          }}
-          className="relative border border-white/15 bg-[#111318] backdrop-blur-xl
-                     rounded-[1.75rem] flex flex-col overflow-hidden"
-        >
-          <div className={`absolute -top-24 -right-24 w-72 h-72 rounded-full bg-gradient-to-br ${project.accent} blur-3xl pointer-events-none`} />
-
-          <ProjectHeader project={project} href={href} label={label} />
-
-          <ImageTile
-            src={project.mobileImage}
-            accent={project.accent}
-            className="relative flex-1 min-h-0"
-          />
-        </motion.div>
-      </div>
-
-      {/*  DESKTOP: cascading peek stack, centered, fixed height, single image  */}
-      <div
-        className="hidden md:flex sticky w-full justify-center"
-        style={{ top: `${topOffset}px`, zIndex: index + 1, paddingLeft: "24px", paddingRight: "24px" }}
-      >
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.7 }}
-          style={{
-            width: "100%",
-            maxWidth: "1100px",
-            height: "560px",
-            padding: "44px",
-            gap: "28px",
-            boxShadow: "0 -14px 40px rgba(0,0,0,0.55), 0 0 50px rgba(125,249,255,0.08)",
-          }}
-          className="relative border border-white/15 bg-[#111318] backdrop-blur-xl
-                     rounded-[2.5rem] flex flex-col overflow-hidden"
-        >
-          <div className={`absolute -top-24 -right-24 w-72 h-72 rounded-full bg-gradient-to-br ${project.accent} blur-3xl pointer-events-none`} />
-
-          <ProjectHeader project={project} href={href} label={label} />
-
-          <ImageTile
-            src={project.image}
-            accent={project.accent}
-            className="relative flex-1 min-h-0"
-          />
-        </motion.div>
-      </div>
-    </>
-  );
-}
-
-export function Projects() {
-  return (
-    <section
-      id="projects"
-      className="relative w-full bg-[#0A0A0A]"
-      style={{ paddingBottom: "50vh" }}
-    >
-      {projects.map((project, i) => (
-        <ProjectCard key={project.number} project={project} index={i} />
-      ))}
     </section>
   );
 }
