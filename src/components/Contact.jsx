@@ -47,29 +47,7 @@ const contactDetails = [
 
 export default function Contact() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-
   const navigate = useNavigate();
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Here you can integrate EmailJS, Formspree, or backend endpoint
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: "", email: "", subject: "", message: "" });
-    }, 4000);
-  };
 
   return (
     <section className="w-full min-h-screen bg-[#eee6d3] text-[#181410] flex flex-col justify-between">
@@ -164,164 +142,68 @@ export default function Contact() {
         </button>
 
         {/* PAGE HEADING */}
-        <div className="mb-10 md:mb-14">
+        <div className="mb-10 md:mb-14 text-center sm:text-left">
           <h2 className="font-['Permanent_Marker'] text-[36px] md:text-[52px] leading-none">
             GET IN TOUCH
           </h2>
-          <span className="block w-14 md:w-16 h-[5px] bg-[#181410] mt-3 -rotate-1" />
+          <span className="block w-14 md:w-16 h-[5px] bg-[#181410] mt-3 -rotate-1 mx-auto sm:mx-0" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14 items-start">
-          {/* LEFT COLUMN: CONTACT DETAILS CARDS */}
-          <div className="md:col-span-5 flex flex-col gap-6">
-            <p className="font-['Space_Mono'] text-[14px] md:text-[16px] leading-relaxed text-[#4a4136]">
-              Have a project in mind, need an AI workflow automated, or just want to connect?
-              Feel free to drop me a message or reach out through any of these platforms!
-            </p>
+        {/* CONTACT DETAILS — CENTERED, FULL WIDTH */}
+        <div className="w-full max-w-xl mx-auto flex flex-col gap-6">
+          <p className="font-['Space_Mono'] text-[14px] md:text-[16px] leading-relaxed text-[#4a4136] text-center sm:text-left">
+            Have a project in mind, need an AI workflow automated, or just want to connect?
+            Feel free to reach out through any of these platforms!
+          </p>
 
-            <div className="flex flex-col gap-3.5 mt-2">
-              {contactDetails.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group flex items-center justify-between p-4 bg-[#f6f0e2] border border-black/15 rounded-xl shadow-[3px_4px_0_rgba(0,0,0,0.06)] hover:shadow-[4px_5px_0_rgba(0,0,0,0.15)] hover:-translate-y-0.5 transition-all"
-                >
-                  <div className="flex items-center gap-3.5 overflow-hidden">
-                    <div className="w-9 h-9 shrink-0 rounded-full bg-[#181410] text-[#eee6d3] flex items-center justify-center group-hover:scale-105 transition-transform">
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d={item.iconPath} />
-                      </svg>
-                    </div>
-                    <div className="flex flex-col overflow-hidden">
-                      <span className="font-['Space_Mono'] text-xs text-[#8a7f6a] font-bold uppercase tracking-wider">
-                        {item.label}
-                      </span>
-                      <span className="font-['Space_Mono'] text-sm text-[#181410] truncate">
-                        {item.value}
-                      </span>
-                    </div>
-                  </div>
-                  <span className="font-['Space_Mono'] text-sm text-[#8a7f6a] group-hover:translate-x-1 transition-transform ml-2 shrink-0">
-                    →
-                  </span>
-                </a>
-              ))}
-            </div>
-
-            {/* HANDWRITTEN NOTE */}
-            <div className="mt-4 p-4 bg-[#e4d9bf] border border-black/10 rounded-xl relative -rotate-1">
-              <span
-                className="font-['Caveat'] text-[24px] md:text-[28px] text-[#181410] leading-snug block"
-                style={{ fontFamily: "'Caveat', cursive" }}
+          <div className="flex flex-col gap-3.5 mt-2">
+            {contactDetails.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                target="_blank"
+                rel="noreferrer"
+                className="group flex items-center justify-between p-4 bg-[#f6f0e2] border border-black/15 rounded-xl shadow-[3px_4px_0_rgba(0,0,0,0.06)] hover:shadow-[4px_5px_0_rgba(0,0,0,0.15)] hover:-translate-y-0.5 transition-all"
               >
-                "Looking forward to building something awesome together!"
-              </span>
-              <span className="block text-right font-['Space_Mono'] text-xs text-[#6e6351] mt-1">
-                — Mughira
-              </span>
-            </div>
+                <div className="flex items-center gap-3.5 overflow-hidden">
+                  <div className="w-9 h-9 shrink-0 rounded-full bg-[#181410] text-[#eee6d3] flex items-center justify-center group-hover:scale-105 transition-transform">
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d={item.iconPath} />
+                    </svg>
+                  </div>
+                  <div className="flex flex-col overflow-hidden">
+                    <span className="font-['Space_Mono'] text-xs text-[#8a7f6a] font-bold uppercase tracking-wider">
+                      {item.label}
+                    </span>
+                    <span className="font-['Space_Mono'] text-sm text-[#181410] truncate">
+                      {item.value}
+                    </span>
+                  </div>
+                </div>
+                <span className="font-['Space_Mono'] text-sm text-[#8a7f6a] group-hover:translate-x-1 transition-transform ml-2 shrink-0">
+                  →
+                </span>
+              </a>
+            ))}
           </div>
 
-          {/* RIGHT COLUMN: CONTACT FORM */}
-          <div className="md:col-span-7 bg-[#f6f0e2] border border-black/15 rounded-2xl shadow-[5px_6px_0_rgba(0,0,0,0.08)] p-6 sm:p-8 md:p-10">
-            <h3 className="font-['Permanent_Marker'] text-2xl text-[#181410] mb-6">
-              SEND A MESSAGE
-            </h3>
-
-            {submitted ? (
-              <div className="bg-[#e4d9bf] border border-black/20 p-6 rounded-xl text-center font-['Space_Mono'] text-sm text-[#181410] animate-fade-in">
-                <span className="text-2xl block mb-2">✉️</span>
-                <p className="font-bold text-base mb-1">Message Sent!</p>
-                <p className="text-[#5a5043]">
-                  Thanks for reaching out, Mughira will get back to you shortly.
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {/* NAME INPUT */}
-                  <div className="flex flex-col gap-1.5">
-                    <label className="font-['Space_Mono'] text-xs font-bold text-[#6e6351] uppercase tracking-wider">
-                      Your Name
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      required
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="your name"
-                      className="w-full bg-[#eee6d3] border border-black/15 rounded-lg px-3.5 py-2.5 font-['Space_Mono'] text-sm text-[#181410] outline-none focus:border-black/50 focus:ring-1 focus:ring-black/20 transition-all placeholder:text-black/30"
-                    />
-                  </div>
-
-                  {/* EMAIL INPUT */}
-                  <div className="flex flex-col gap-1.5">
-                    <label className="font-['Space_Mono'] text-xs font-bold text-[#6e6351] uppercase tracking-wider">
-                      Your Email
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="abc@example.com"
-                      className="w-full bg-[#eee6d3] border border-black/15 rounded-lg px-3.5 py-2.5 font-['Space_Mono'] text-sm text-[#181410] outline-none focus:border-black/50 focus:ring-1 focus:ring-black/20 transition-all placeholder:text-black/30"
-                    />
-                  </div>
-                </div>
-
-                {/* SUBJECT INPUT */}
-                <div className="flex flex-col gap-1.5">
-                  <label className="font-['Space_Mono'] text-xs font-bold text-[#6e6351] uppercase tracking-wider">
-                    Subject
-                  </label>
-                  <input
-                    type="text"
-                    name="subject"
-                    required
-                    value={formData.subject}
-                    onChange={handleChange}
-                    placeholder="Project Inquiry / Hiring"
-                    className="w-full bg-[#eee6d3] border border-black/15 rounded-lg px-3.5 py-2.5 font-['Space_Mono'] text-sm text-[#181410] outline-none focus:border-black/50 focus:ring-1 focus:ring-black/20 transition-all placeholder:text-black/30"
-                  />
-                </div>
-
-                {/* MESSAGE TEXTAREA */}
-                <div className="flex flex-col gap-1.5">
-                  <label className="font-['Space_Mono'] text-xs font-bold text-[#6e6351] uppercase tracking-wider">
-                    Message
-                  </label>
-                  <textarea
-                    name="message"
-                    rows="5"
-                    required
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Tell me about your project or idea..."
-                    className="w-full bg-[#eee6d3] border border-black/15 rounded-lg px-3.5 py-2.5 font-['Space_Mono'] text-sm text-[#181410] outline-none focus:border-black/50 focus:ring-1 focus:ring-black/20 transition-all placeholder:text-black/30 resize-none"
-                  />
-                </div>
-
-                {/* SUBMIT BUTTON */}
-                <button
-                  type="submit"
-                  className="mt-2 w-full sm:w-auto self-start bg-[#181410] text-[#eee6d3] font-['Space_Mono'] text-sm font-bold tracking-wide px-8 py-3.5 rounded-lg shadow-[3px_4px_0_rgba(0,0,0,0.2)] hover:-translate-y-0.5 active:scale-95 transition-all -rotate-1 hover:rotate-0 flex items-center justify-center gap-2"
-                >
-                  <span>Send Message</span>
-                  <span>→</span>
-                </button>
-              </form>
-            )}
+          {/* HANDWRITTEN NOTE */}
+          <div className="mt-4 p-4 bg-[#e4d9bf] border border-black/10 rounded-xl relative -rotate-1">
+            <span
+              className="font-['Caveat'] text-[24px] md:text-[28px] text-[#181410] leading-snug block"
+              style={{ fontFamily: "'Caveat', cursive" }}
+            >
+              "Looking forward to building something awesome together!"
+            </span>
+            <span className="block text-right font-['Space_Mono'] text-xs text-[#6e6351] mt-1">
+              — Mughira
+            </span>
           </div>
         </div>
       </div>
